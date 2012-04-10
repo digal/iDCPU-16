@@ -44,6 +44,7 @@
 		AA95CF2A1534C5F400F544F2 /* DCPU copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DCPU copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA95CF2C1534C5F400F544F2 /* DCPU copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DCPU copy-Info.plist"; path = "/Users/digal/work/ios/dcpu/DCPU copy-Info.plist"; sourceTree = "<absolute>"; };
 		AA95CF2F1534C67000F544F2 /* DCEmulatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCEmulatorTest.m; sourceTree = "<group>"; };
+		AA95CF321534C85500F544F2 /* Instructions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Instructions.h; path = Emulator/Instructions.h; sourceTree = "<group>"; };
 		AACA95561534B30500D5AE46 /* DCPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACA955A1534B30500D5AE46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AACA955C1534B30500D5AE46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,6 +175,7 @@
 			children = (
 				AACA957B1534B35F00D5AE46 /* DCEmulator.h */,
 				AACA957C1534B35F00D5AE46 /* DCEmulator.m */,
+				AA95CF321534C85500F544F2 /* Instructions.h */,
 			);
 			name = Emulator;
 			sourceTree = "<group>";
