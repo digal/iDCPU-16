@@ -41,7 +41,7 @@
 		AA95CF071534BF5A00F544F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA95CF091534BF5A00F544F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA95CF0B1534BF5A00F544F2 /* dcpu-tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dcpu-tests-Prefix.pch"; sourceTree = "<group>"; };
-		AA95CF2A1534C5F400F544F2 /* DCPU copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DCPU copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA95CF2A1534C5F400F544F2 /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA95CF2C1534C5F400F544F2 /* DCPU copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DCPU copy-Info.plist"; path = "/Users/digal/work/ios/dcpu/DCPU copy-Info.plist"; sourceTree = "<absolute>"; };
 		AA95CF2F1534C67000F544F2 /* DCEmulatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCEmulatorTest.m; sourceTree = "<group>"; };
 		AA95CF321534C85500F544F2 /* Instructions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Instructions.h; path = Emulator/Instructions.h; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				AACA95561534B30500D5AE46 /* DCPU.app */,
-				AA95CF2A1534C5F400F544F2 /* DCPU copy.app */,
+				AA95CF2A1534C5F400F544F2 /* Tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 			);
 			name = Tests;
 			productName = DCPU;
-			productReference = AA95CF2A1534C5F400F544F2 /* DCPU copy.app */;
+			productReference = AA95CF2A1534C5F400F544F2 /* Tests.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AACA95551534B30500D5AE46 /* DCPU */ = {
@@ -376,7 +376,7 @@
 				GCC_PREFIX_HEADER = "DCPU/DCPU-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "DCPU copy-Info.plist";
-				PRODUCT_NAME = "DCPU copy";
+				PRODUCT_NAME = Tests;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -391,7 +391,7 @@
 				GCC_PREFIX_HEADER = "DCPU/DCPU-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "DCPU copy-Info.plist";
-				PRODUCT_NAME = "DCPU copy";
+				PRODUCT_NAME = Tests;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -84,7 +84,42 @@ DCEmulator* _emulator;
     
     GHAssertEquals(_emulator->pc, (UInt16)8, @"pc should point to 0x08 after set loop");
     GHAssertEquals(_emulator->cycles, (long)16, @"cycles should be 16 after set loop");
+}
 
+- (void) testStack {
+    GHAssertEquals(_emulator->cycles, (long)0, @"cycles should be 0 at the beginning");
+
+    [_emulator setValue:1 for:PUSH];
+    NSLog(@"PUSH %@", [_emulator state]);
+    
+    [_emulator setValue:2 for:PUSH];
+    NSLog(@"PUSH %@", [_emulator state]);
+    
+    [_emulator setValue:3 for:PUSH];
+    NSLog(@"PUSH %@", [_emulator state]);
+
+    
+    
+    GHAssertEquals([_emulator getvalue:SEEK], (UInt16)3, @"Seek should read 3");
+    NSLog(@"SEEK %@", [_emulator state]);
+
+    GHAssertEquals([_emulator getvalue:SEEK], (UInt16)3, @"Seek should not change a stack pointer");
+    NSLog(@"SEEK %@", [_emulator state]);
+    
+    GHAssertEquals([_emulator getvalue:POP],  (UInt16)3, @"Pop should pop 3");
+    NSLog(@"POP %@", [_emulator state]);
+
+    GHAssertEquals([_emulator getvalue:POP],  (UInt16)2, @"Pop should pop 2");
+    NSLog(@"POP %@", [_emulator state]);
+    
+    GHAssertEquals([_emulator getvalue:SEEK], (UInt16)1, @"Seek should read 1");
+    NSLog(@"SEEK %@", [_emulator state]);
+    
+    GHAssertEquals([_emulator getvalue:POP],  (UInt16)1, @"Pop should pop 1");
+    NSLog(@"POP %@", [_emulator state]);
+    
+
+    GHAssertEquals(_emulator->cycles, (long)0, @"cycles should not increase when working with stack");
 
 }
 

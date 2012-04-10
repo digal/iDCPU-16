@@ -39,4 +39,8 @@
 #define MEM_I 0x0e
 #define MEM_J 0x0f
 
+#define POP   0x18
+#define SEEK  0x19
+#define PUSH  0x1a
+
 

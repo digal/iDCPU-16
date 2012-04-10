@@ -11,6 +11,7 @@
 #import "Values.h"
 
 #define MEMSIZE 10000
+#define STACK_START 0xffff
 
 #define A regs[0]
 #define B regs[1]

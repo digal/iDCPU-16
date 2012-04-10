@@ -14,6 +14,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self->sp = STACK_START;
         NSLog(@"%@", [self state]);
     }
     return self;
@@ -30,6 +31,14 @@
         //0x10-0x17: [next word + register]
         cycles++;
         return mem[regs[0x0f & src] + mem[pc++]];
+    } else if (src >= (REG_A | 0x10) && src <= (REG_J | 0x10)) { 
+        //0x10-0x17: [next word + register]
+        cycles++;
+        return mem[regs[0x0f & src] + mem[pc++]];
+    } else if (src == SEEK) {
+        return mem[sp];
+    } else if (src == POP) {
+        return mem[sp++];
     } else {
         [self error:$str(@"Unknown source: 0x%02x", src)];
         return 0x00;
@@ -47,6 +56,8 @@
         //0x10-0x17: [next word + register]
         cycles++;
         mem[regs[0x0f & dst] + mem[pc++]] = value;
+    } else if (dst == PUSH) {
+        mem[--sp] = value;
     } else {
         [self error:$str(@"Unknown destination: 0x%02x", dst)];
     }
