@@ -20,7 +20,7 @@
 #define J regs[7]
 
 @interface DCEmulator : NSObject {
-    
+@public    
     UInt16 regs[8];
     UInt16 pc;
     UInt16 sp;
