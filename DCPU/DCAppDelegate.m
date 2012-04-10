@@ -9,6 +9,7 @@
 #import "DCAppDelegate.h"
 
 #import "DCViewController.h"
+#import "DCEmulator.h"
 
 @implementation DCAppDelegate
 
@@ -17,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    DCEmulator *dcu = [[DCEmulator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {

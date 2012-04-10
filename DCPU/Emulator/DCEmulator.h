@@ -28,4 +28,7 @@
     UInt16 mem[MEMSIZE];
 }
 
+- (void) step;
+- (NSString*) state;
+
 @end
