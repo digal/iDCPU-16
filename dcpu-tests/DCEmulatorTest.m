@@ -43,11 +43,11 @@ DCEmulator* _emulator;
         
         [_emulator setValue:addr for:reg];
         GHAssertEquals(_emulator->regs[reg], addr, @"setValue should work for register");
-        GHAssertEquals([_emulator getvalue:reg], addr, @"getValue should work for register");
+        GHAssertEquals([_emulator getValue:reg], addr, @"getValue should work for register");
         
         [_emulator setValue:val for:memreg];
         GHAssertEquals(_emulator->mem[addr], val, @"setValue should work for [register]");
-        GHAssertEquals([_emulator getvalue:memreg], val, @"getValue should work for register");
+        GHAssertEquals([_emulator getValue:memreg], val, @"getValue should work for register");
     }
 }
 
@@ -79,7 +79,7 @@ DCEmulator* _emulator;
         GHTestLog(@"src: 0x%02x, addr: 0x%04x", src, targetAddr);
 
         GHAssertEquals(_emulator->mem[targetAddr], (UInt16)(src & 0x0f), @"[nextword + register] should be register number");
-        GHAssertEquals([_emulator getvalue:src], (UInt16)(src & 0x0f), @"getvalue for [nextword + register] should be register number");
+        GHAssertEquals([_emulator getValue:src], (UInt16)(src & 0x0f), @"getValue for [nextword + register] should be register number");
     }
     
     GHAssertEquals(_emulator->pc, (UInt16)8, @"pc should point to 0x08 after set loop");
@@ -100,22 +100,22 @@ DCEmulator* _emulator;
 
     
     
-    GHAssertEquals([_emulator getvalue:SEEK], (UInt16)3, @"Seek should read 3");
+    GHAssertEquals([_emulator getValue:SEEK], (UInt16)3, @"Seek should read 3");
     NSLog(@"SEEK %@", [_emulator state]);
 
-    GHAssertEquals([_emulator getvalue:SEEK], (UInt16)3, @"Seek should not change a stack pointer");
+    GHAssertEquals([_emulator getValue:SEEK], (UInt16)3, @"Seek should not change a stack pointer");
     NSLog(@"SEEK %@", [_emulator state]);
     
-    GHAssertEquals([_emulator getvalue:POP],  (UInt16)3, @"Pop should pop 3");
+    GHAssertEquals([_emulator getValue:POP],  (UInt16)3, @"Pop should pop 3");
     NSLog(@"POP %@", [_emulator state]);
 
-    GHAssertEquals([_emulator getvalue:POP],  (UInt16)2, @"Pop should pop 2");
+    GHAssertEquals([_emulator getValue:POP],  (UInt16)2, @"Pop should pop 2");
     NSLog(@"POP %@", [_emulator state]);
     
-    GHAssertEquals([_emulator getvalue:SEEK], (UInt16)1, @"Seek should read 1");
+    GHAssertEquals([_emulator getValue:SEEK], (UInt16)1, @"Seek should read 1");
     NSLog(@"SEEK %@", [_emulator state]);
     
-    GHAssertEquals([_emulator getvalue:POP],  (UInt16)1, @"Pop should pop 1");
+    GHAssertEquals([_emulator getValue:POP],  (UInt16)1, @"Pop should pop 1");
     NSLog(@"POP %@", [_emulator state]);
     
 

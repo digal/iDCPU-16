@@ -20,7 +20,7 @@
     return self;
 }
 
-- (UInt16) getvalue:(UInt8)src {
+- (UInt16) getValue:(UInt8)src {
     if (src >= REG_A && src <= REG_J) {
         //0x00-0x07: register (A, B, C, X, Y, Z, I or J, in that order)
         return regs[src];

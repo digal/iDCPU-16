@@ -36,7 +36,7 @@
 - (void) step;
 - (NSString*) state;
 
-- (UInt16) getvalue:(UInt8)src;
+- (UInt16) getValue:(UInt8)src;
 - (void) setValue:(UInt16)value for:(UInt8)dst;
 
 
