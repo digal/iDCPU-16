@@ -26,6 +26,10 @@ DCEmulator* _emulator;
 
 
 - (void) testInitState {
+    GHAssertTrue(_emulator->sp == 0xffff, @"Stack pointer should be 0xffff");
+    GHAssertTrue(_emulator->pc == 0, @"PC should be 0");
+    GHAssertTrue(_emulator->o  == 0,  @"Overflow flag should be 0");
+
     for (int i=0; i<=7; i++) {
         GHAssertTrue(_emulator->regs[i] == 0, @"Register %02x should be 0", i);
     }
