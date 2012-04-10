@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Instructions.h"
+#import "Values.h"
 
 #define MEMSIZE 10000
 
@@ -26,9 +28,15 @@
     UInt16 sp;
     UInt16 o;
     UInt16 mem[MEMSIZE];
+
+    long cycles; 
 }
 
 - (void) step;
 - (NSString*) state;
+
+- (UInt16) getvalue:(UInt8)src;
+- (void) setValue:(UInt16)value for:(UInt8)dst;
+
 
 @end
