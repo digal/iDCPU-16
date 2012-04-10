@@ -32,6 +32,8 @@ DCEmulator* _emulator;
 }
 
 - (void) testRegisters {
+    GHTestLog(@"Testing src/dest from 0x00 to 0x0f (reg and [reg] cases)");
+
     for (UInt8 reg=REG_A; reg<=REG_J; reg++) {
         UInt16 addr = 0x1000+reg*10;
         UInt16 val = 0x1234+reg;
@@ -48,5 +50,43 @@ DCEmulator* _emulator;
         GHAssertEquals([_emulator getvalue:memreg], val, @"getValue should work for register");
     }
 }
+
+//TODO: less obscure test
+- (void) testNextWordAndReg {
+    GHTestLog(@"Testing src/dest from 0x10 to 0x1f ([reg + next word] case)");
+    GHTestLog(@"Setting each target word in memory to corresponding register number");
+    
+    GHAssertEquals(_emulator->pc, (UInt16)0, @"PC should be zero at the beginning");
+    GHAssertEquals(_emulator->cycles, (long)0, @"cycles should be 0 at the beginning");
+    
+    for (UInt8 reg=REG_A; reg<=REG_J; reg++) {
+        //each target word should contain corresponding register number
+        UInt16 nwValue = 0x1000 + reg;
+        UInt16 addr = nwValue + reg;
+        GHTestLog(@"reg: 0x%02x, nwValue: 0x%04x, addr: 0x%04x", reg, nwValue, addr);
+        _emulator->mem[reg]  = nwValue;
+        [_emulator setValue:reg for:reg];
+        [_emulator setValue:reg for:(0x10 | reg)];
+    }
+
+    GHAssertEquals(_emulator->cycles, (long)8, @"cycles should be 8 after set loop");
+    GHAssertEquals(_emulator->pc, (UInt16)8, @"pc should point to 0x08 after set loop");
+
+    //reset PC
+    _emulator->pc = 0;
+    for (UInt8 src=0x10; src<=0x17; src++) {
+        UInt16 targetAddr = 0x1000 + ((src & 0x0f) * 2);
+        GHTestLog(@"src: 0x%02x, addr: 0x%04x", src, targetAddr);
+
+        GHAssertEquals(_emulator->mem[targetAddr], (UInt16)(src & 0x0f), @"[nextword + register] should be register number");
+        GHAssertEquals([_emulator getvalue:src], (UInt16)(src & 0x0f), @"getvalue for [nextword + register] should be register number");
+    }
+    
+    GHAssertEquals(_emulator->pc, (UInt16)8, @"pc should point to 0x08 after set loop");
+    GHAssertEquals(_emulator->cycles, (long)16, @"cycles should be 16 after set loop");
+
+
+}
+
 
 @end

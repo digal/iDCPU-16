@@ -26,6 +26,10 @@
     } else if (src >= MEM_A && src <= MEM_J) { 
         //0x08-0x0f: [register]
         return mem[regs[src & 0x07]];
+    } else if (src >= (REG_A | 0x10) && src <= (REG_J | 0x10)) { 
+        //0x10-0x17: [next word + register]
+        cycles++;
+        return mem[regs[0x0f & src] + mem[pc++]];
     } else {
         [self error:$str(@"Unknown source: 0x%02x", src)];
         return 0x00;
@@ -39,6 +43,10 @@
     } else if (dst >= MEM_A && dst <= MEM_J) { 
         //0x08-0x0f: [register]
         mem[regs[dst & 0x07]] = value;
+    } else if (dst >= (REG_A | 0x10) && dst <= (REG_J | 0x10)) { 
+        //0x10-0x17: [next word + register]
+        cycles++;
+        mem[regs[0x0f & dst] + mem[pc++]] = value;
     } else {
         [self error:$str(@"Unknown destination: 0x%02x", dst)];
     }
