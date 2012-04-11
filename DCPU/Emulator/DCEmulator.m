@@ -96,9 +96,43 @@
     } else {
         [self error:$str(@"Unknown destination: 0x%02x", dst)];
     }
-
 }
 
+
+
+- (void) exec:(UInt16) instr {
+//    In a basic instruction, the lower four bits of the first word of the instruction are the opcode,
+//    and the remaining twelve bits are split into two six bit values, called a and b.
+//    a is always handled by the processor before b, and is the lower six bits.
+//    In bits (with the least significant being last), a basic instruction has the format: bbbbbbaaaaaaoooo
+
+    
+//    * SET, AND, BOR and XOR take 1 cycle, plus the cost of a and b
+//    * ADD, SUB, MUL, SHR, and SHL take 2 cycles, plus the cost of a and b
+//    * DIV and MOD take 3 cycles, plus the cost of a and b
+//    * IFE, IFN, IFG, IFB take 2 cycles, plus the cost of a and b, plus 1 if the test fails
+
+
+    UInt8 op = instr         & 0xf;     //4 bit
+    UInt8 a =  (instr >> 4)  & 0x3f;    //6 bit
+    UInt8 b =  (instr >> 10) & 0x3f;    //6 bit
+    UInt16 bValue;    
+    switch (op) {
+        case 0x0: 
+            [self error:@"extended OPS are not supported yet"];
+            break;
+        case SET: //0x1: SET a, b - sets a to b
+            cycles++;
+            bValue = [self getValue:b];
+            [self setValue:bValue for:a];
+            break;
+            
+        default:
+            [self error:$str(@"unknown op: %1x (instr %04x)", op, instr)];
+            break;
+    }
+    
+}
 
 - (void) step {
     

@@ -29,6 +29,7 @@
 
 - (UInt16) getValue:(UInt8)src;
 - (void) setValue:(UInt16)value for:(UInt8)dst;
+- (void) exec:(UInt16) instr;
 
 
 @end
