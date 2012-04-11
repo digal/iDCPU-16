@@ -35,15 +35,20 @@
         //0x10-0x17: [next word + register]
         cycles++;
         return mem[regs[0x0f & src] + mem[pc++]];
-    } else if (src == SEEK) {
-        return mem[sp];
     } else if (src == POP) {
+        //0x18: POP / [SP++]
         return mem[sp++];
+    } else if (src == PEEK) {
+        //0x19: PEEK / [SP]
+        return mem[sp];
     } else if (src == SP) {
+        //0x1b: SP
         return sp;
     } else if (src == PC) {
+        //0x1c: PC
         return pc;
     } else if (src == O) {
+        //0x1d: O
         return o;
     } else {
         [self error:$str(@"Unknown source: 0x%02x", src)];
@@ -63,7 +68,17 @@
         cycles++;
         mem[regs[0x0f & dst] + mem[pc++]] = value;
     } else if (dst == PUSH) {
+        //0x1a: PUSH / [--SP]
         mem[--sp] = value;
+    } else if (dst == SP) {
+        //0x1b: SP
+        sp = value;
+    } else if (dst == PC) {
+        //0x1c: PC
+        pc = value;
+    } else if (dst == O) {
+        //0x1d: O
+        o = value && 0x0001; //trim to last bit
     } else {
         [self error:$str(@"Unknown destination: 0x%02x", dst)];
     }

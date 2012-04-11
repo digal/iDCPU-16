@@ -40,7 +40,7 @@
 #define MEM_J 0x0f
 
 #define POP   0x18
-#define SEEK  0x19
+#define PEEK  0x19
 #define PUSH  0x1a
 
 #define SP    0x1b

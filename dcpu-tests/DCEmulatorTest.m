@@ -53,6 +53,23 @@ DCEmulator* _emulator;
         GHAssertEquals(_emulator->mem[addr], val, @"setValue should work for [register]");
         GHAssertEquals([_emulator getValue:memreg], val, @"getValue should work for register");
     }
+    
+    UInt16 pcVal = 0x0010;
+    [_emulator setValue:pcVal for:PC];
+    GHAssertEquals(_emulator->pc, pcVal, @"setValue should work for PC");
+    GHAssertEquals([_emulator getValue:PC], pcVal, @"getValue should work for PC");
+
+    UInt16 spVal = 0xfff0;
+    [_emulator setValue:spVal for:SP];
+    GHAssertEquals(_emulator->sp, spVal, @"setValue should work for SP");
+    GHAssertEquals([_emulator getValue:SP], spVal, @"getValue should work for SP");
+
+    UInt16 oValBig = 0x4321;
+    UInt16 oVal = 0x0001;
+    [_emulator setValue:oValBig for:O];
+    GHAssertEquals(_emulator->o, oVal, @"setValue should work for O, trimming its value to 1 bit");
+    GHAssertEquals([_emulator getValue:O], oVal, @"getValue should work for O");
+
 }
 
 //TODO: less obscure test
@@ -107,12 +124,11 @@ DCEmulator* _emulator;
     GHAssertEquals([_emulator getValue:SP],  (UInt16)0xfffc, @"SP should point to the beginning of the stack - 3 words");
 
     
-    
-    GHAssertEquals([_emulator getValue:SEEK], (UInt16)3, @"Seek should read 3");
+    GHAssertEquals([_emulator getValue:PEEK], (UInt16)3, @"Seek should read 3");
     GHAssertEquals([_emulator getValue:SP],  (UInt16)0xfffc, @"SP should point to the beginning of the stack - 3 words");
     NSLog(@"SEEK %@", [_emulator state]);
 
-    GHAssertEquals([_emulator getValue:SEEK], (UInt16)3, @"Seek should not change a stack pointer");
+    GHAssertEquals([_emulator getValue:PEEK], (UInt16)3, @"Seek should not change a stack pointer");
     GHAssertEquals([_emulator getValue:SP],  (UInt16)0xfffc, @"SP should point to the beginning of the stack - 3 words");
     NSLog(@"SEEK %@", [_emulator state]);
     
@@ -124,7 +140,7 @@ DCEmulator* _emulator;
     GHAssertEquals([_emulator getValue:SP],  (UInt16)0xfffe, @"SP should point to the beginning of the stack - 1 word");
     NSLog(@"POP %@", [_emulator state]);
     
-    GHAssertEquals([_emulator getValue:SEEK], (UInt16)1, @"Seek should read 1");
+    GHAssertEquals([_emulator getValue:PEEK], (UInt16)1, @"Seek should read 1");
     GHAssertEquals([_emulator getValue:SP],  (UInt16)0xfffe, @"SP should point to the beginning of the stack - 1 word");
     NSLog(@"SEEK %@", [_emulator state]);
     
@@ -134,7 +150,6 @@ DCEmulator* _emulator;
     
 
     GHAssertEquals(_emulator->cycles, (long)0, @"cycles should not increase when working with stack");
-
 }
 
 
