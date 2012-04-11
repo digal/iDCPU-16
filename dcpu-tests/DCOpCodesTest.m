@@ -80,5 +80,29 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, 2l, @"SET REG, [ADDR] should take 2 cycles");
 }
 
+- (void)testSetMemMem {
+    //test memory read
+    //SET [0x2000], [0x1000]
+    UInt16 val  = 0x1234;
+    UInt16 srcAddr = 0x1000;
+    UInt16 dstAddr = 0x2000;
+    
+    UInt16 program[3] = {
+        SET | (NWP << 4) | (NWP << 10), //
+        dstAddr,
+        srcAddr
+    };
+    _emulator->mem[srcAddr] = val; //put test value into memory
+    GHTestLog($str(@"Instruction for \"SET [0x2000], [0x1000]\": %04x %04x %04x", program[0], program[1], program[2]));
+    [_emulator loadBinary:&program[0] withLength:3];
+    //TODO: rewrite for actual program execution
+    [_emulator setValue:0x0001 for:PC]; //emulate running program
+    [_emulator exec:program[0]];
+    GHAssertEquals([_emulator getValue:PC], (UInt16)3, @"PC should be incremented after setting to memory pointer");
+    GHAssertEquals(_emulator->mem[dstAddr], val, @"Value 0x1f should be copied from memory to memory");
+    GHAssertEquals(_emulator->cycles, 2l, @"SET [ADDR], [ADDR] should take 2 cycles");
+}
+
+
 
 @end
