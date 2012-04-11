@@ -134,6 +134,11 @@
     
 }
 
+- (void) loadBinary:(UInt16*)binary withLength:(UInt16)length {
+    memcpy(&mem, binary, length * sizeof(UInt16));
+}
+
+
 - (void) step {
     
     

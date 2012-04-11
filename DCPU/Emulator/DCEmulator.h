@@ -27,9 +27,14 @@
 - (void) step;
 - (NSString*) state;
 
+//internal stuff for reading/writing values
 - (UInt16) getValue:(UInt8)src;
 - (void) setValue:(UInt16)value for:(UInt8)dst;
-- (void) exec:(UInt16) instr;
 
+//execute single word instruction
+- (void) exec:(UInt16)instr;
+
+//load binary into memory
+- (void) loadBinary:(UInt16*)binary withLength:(UInt16)length;
 
 @end
