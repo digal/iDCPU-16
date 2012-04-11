@@ -58,6 +58,9 @@
         //0x1f: next word (literal)
         cycles++;
         return mem[pc++];
+    } else if (src >= 0x20 && src <=0x3f) {
+        //0x20-0x3f: literal value 0x00-0x1f (literal)
+        return src & 0x1f;
     } else {
         [self error:$str(@"Unknown source: 0x%02x", src)];
         return 0x00;
