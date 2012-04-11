@@ -10,10 +10,10 @@
 #import <GHUnitIOS/GHUnit.h> 
 #import "DCEmulator.h"
 
-@interface DCEmulatorTest : GHTestCase {}
+@interface DCValuesTest : GHTestCase {}
 @end
 
-@implementation DCEmulatorTest
+@implementation DCValuesTest
 DCEmulator* _emulator;
 
 

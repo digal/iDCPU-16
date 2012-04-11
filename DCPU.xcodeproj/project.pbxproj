@@ -21,7 +21,7 @@
 		AA95CF241534C5F400F544F2 /* DCViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AACA95721534B30500D5AE46 /* DCViewController_iPad.xib */; };
 		AA95CF251534C5F400F544F2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = AACA957F1534B80500D5AE46 /* Podfile */; };
 		AA95CF2D1534C60200F544F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA95CF091534BF5A00F544F2 /* main.m */; };
-		AA95CF311534C7CE00F544F2 /* DCEmulatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA95CF2F1534C67000F544F2 /* DCEmulatorTest.m */; };
+		AA95CF311534C7CE00F544F2 /* DCValuesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA95CF2F1534C67000F544F2 /* DCValuesTest.m */; };
 		AACA955B1534B30500D5AE46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955A1534B30500D5AE46 /* UIKit.framework */; };
 		AACA955D1534B30500D5AE46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955C1534B30500D5AE46 /* Foundation.framework */; };
 		AACA955F1534B30500D5AE46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955E1534B30500D5AE46 /* CoreGraphics.framework */; };
@@ -45,7 +45,7 @@
 		AA95CF0B1534BF5A00F544F2 /* dcpu-tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dcpu-tests-Prefix.pch"; sourceTree = "<group>"; };
 		AA95CF2A1534C5F400F544F2 /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA95CF2C1534C5F400F544F2 /* DCPU copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DCPU copy-Info.plist"; path = "/Users/digal/work/ios/dcpu/DCPU copy-Info.plist"; sourceTree = "<absolute>"; };
-		AA95CF2F1534C67000F544F2 /* DCEmulatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCEmulatorTest.m; sourceTree = "<group>"; };
+		AA95CF2F1534C67000F544F2 /* DCValuesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCValuesTest.m; sourceTree = "<group>"; };
 		AA95CF321534C85500F544F2 /* Instructions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Instructions.h; path = Emulator/Instructions.h; sourceTree = "<group>"; };
 		AA95CF331534CB5F00F544F2 /* Values.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Values.h; path = Emulator/Values.h; sourceTree = "<group>"; };
 		AACA95561534B30500D5AE46 /* DCPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				AA95CF041534BF5A00F544F2 /* Supporting Files */,
-				AA95CF2F1534C67000F544F2 /* DCEmulatorTest.m */,
+				AA95CF2F1534C67000F544F2 /* DCValuesTest.m */,
 			);
 			name = Tests;
 			path = "dcpu-tests";
@@ -318,7 +318,7 @@
 				AA95CF1A1534C5F400F544F2 /* DCViewController.m in Sources */,
 				AA95CF1B1534C5F400F544F2 /* DCEmulator.m in Sources */,
 				AA95CF2D1534C60200F544F2 /* main.m in Sources */,
-				AA95CF311534C7CE00F544F2 /* DCEmulatorTest.m in Sources */,
+				AA95CF311534C7CE00F544F2 /* DCValuesTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
