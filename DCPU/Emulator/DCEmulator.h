@@ -10,7 +10,7 @@
 #import "Instructions.h"
 #import "Values.h"
 
-#define MEMSIZE 10000
+#define MEMSIZE 0x10000
 #define STACK_START 0xffff
 
 @interface DCEmulator : NSObject {

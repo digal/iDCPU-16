@@ -152,5 +152,10 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, (long)0, @"cycles should not increase when working with stack");
 }
 
+- (void)testMemoryValues {
+    
+    
+}
+
 
 @end
