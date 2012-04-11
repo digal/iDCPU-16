@@ -47,5 +47,9 @@
 #define PC    0x1c
 #define O     0x1d
 
+#define NWP   0x1e
+#define NW    0x1f
+
+
 
 

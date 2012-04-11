@@ -151,5 +151,29 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, (long)0, @"cycles should not increase when working with stack");
 }
 
+- (void)testMemory {
+    UInt16 val  = 0x1234;
+    UInt16 addr = 0x1000;
+
+    //put target address to [PC]
+    _emulator->mem[0] = addr;
+    //put value to [target address]
+    [_emulator setValue:val for:NWP];
+    
+    GHAssertEquals([_emulator getValue:PC], (UInt16)0x1,  @"Setting [next word] should increase PC");
+    [_emulator setValue:0x0 for:PC]; //reset pc;
+    GHAssertEquals([_emulator getValue:PC], (UInt16)0x0,  @"Resetting PC check");
+    
+    GHAssertEquals([_emulator getValue:NW], (UInt16)addr, @"Getting next word literal should return target addr");
+    GHAssertEquals(_emulator->cycles, (long)1,            @"reading a word should increase cycles");
+    GHAssertEquals([_emulator getValue:PC], (UInt16)0x1,  @"Getting next word literal should increase PC");
+    GHAssertEquals([_emulator getValue:PC], (UInt16)0x0,  @"Resetting PC check");
+    
+    GHAssertEquals([_emulator getValue:NWP], (UInt16)val, @"Getting [next word] should return target value");
+    GHAssertEquals(_emulator->cycles, (long)1,            @"reading a [word] should increase cycles");
+    GHAssertEquals([_emulator getValue:PC], (UInt16)0x1,  @"Getting [next word] should increase PC");
+   
+}
+
 
 @end
