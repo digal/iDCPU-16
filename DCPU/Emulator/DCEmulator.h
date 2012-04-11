@@ -13,15 +13,6 @@
 #define MEMSIZE 10000
 #define STACK_START 0xffff
 
-#define A regs[0]
-#define B regs[1]
-#define C regs[2]
-#define X regs[3]
-#define Y regs[4]
-#define Z regs[5]
-#define I regs[6]
-#define J regs[7]
-
 @interface DCEmulator : NSObject {
 @public    
     UInt16 regs[8];

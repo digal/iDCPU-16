@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43AFA4459E8E4055A9AB60C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5008C07F933E43AE9964ABDC /* libPods.a */; };
+		AA6397F4153569C1008C8968 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AA6397F3153569C1008C8968 /* README.md */; };
 		AA95CF191534C5F400F544F2 /* DCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA956A1534B30500D5AE46 /* DCAppDelegate.m */; };
 		AA95CF1A1534C5F400F544F2 /* DCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA956D1534B30500D5AE46 /* DCViewController.m */; };
 		AA95CF1B1534C5F400F544F2 /* DCEmulator.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA957C1534B35F00D5AE46 /* DCEmulator.m */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		4CFA9CD1E0D34541A084A3E1 /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		5008C07F933E43AE9964ABDC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA6397F3153569C1008C8968 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		AA95CF051534BF5A00F544F2 /* dcpu-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "dcpu-tests-Info.plist"; sourceTree = "<group>"; };
 		AA95CF071534BF5A00F544F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA95CF091534BF5A00F544F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		AACA95611534B30500D5AE46 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA6397F3153569C1008C8968 /* README.md */,
 				AACA957F1534B80500D5AE46 /* Podfile */,
 				AACA95621534B30500D5AE46 /* DCPU-Info.plist */,
 				AACA95631534B30500D5AE46 /* InfoPlist.strings */,
@@ -269,6 +272,7 @@
 				AACA95711534B30500D5AE46 /* DCViewController_iPhone.xib in Resources */,
 				AACA95741534B30500D5AE46 /* DCViewController_iPad.xib in Resources */,
 				AACA95801534B80500D5AE46 /* Podfile in Resources */,
+				AA6397F4153569C1008C8968 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
