@@ -50,6 +50,14 @@
     } else if (src == O) {
         //0x1d: O
         return o;
+    } else if (src == NWP) {
+        //0x1e: [next word]
+        cycles++;
+        return mem[mem[pc++]];
+    } else if (src == NW) {
+        //0x1f: next word (literal)
+        cycles++;
+        return mem[pc++];
     } else {
         [self error:$str(@"Unknown source: 0x%02x", src)];
         return 0x00;
@@ -79,6 +87,9 @@
     } else if (dst == O) {
         //0x1d: O
         o = value;
+    } else if (dst == NWP) {
+        //0x1e: [next word]
+        mem[mem[pc++]] = value;
     } else {
         [self error:$str(@"Unknown destination: 0x%02x", dst)];
     }

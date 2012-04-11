@@ -167,10 +167,12 @@ DCEmulator* _emulator;
     GHAssertEquals([_emulator getValue:NW], (UInt16)addr, @"Getting next word literal should return target addr");
     GHAssertEquals(_emulator->cycles, (long)1,            @"reading a word should increase cycles");
     GHAssertEquals([_emulator getValue:PC], (UInt16)0x1,  @"Getting next word literal should increase PC");
+
+    [_emulator setValue:0x0 for:PC]; //reset pc;
     GHAssertEquals([_emulator getValue:PC], (UInt16)0x0,  @"Resetting PC check");
     
     GHAssertEquals([_emulator getValue:NWP], (UInt16)val, @"Getting [next word] should return target value");
-    GHAssertEquals(_emulator->cycles, (long)1,            @"reading a [word] should increase cycles");
+    GHAssertEquals(_emulator->cycles, (long)2,            @"reading a [word] should increase cycles");
     GHAssertEquals([_emulator getValue:PC], (UInt16)0x1,  @"Getting [next word] should increase PC");
    
 }
