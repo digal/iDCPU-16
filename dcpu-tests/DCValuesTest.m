@@ -174,7 +174,12 @@ DCEmulator* _emulator;
     GHAssertEquals([_emulator getValue:NWP], (UInt16)val, @"Getting [next word] should return target value");
     GHAssertEquals(_emulator->cycles, (long)2,            @"reading a [word] should increase cycles");
     GHAssertEquals([_emulator getValue:PC], (UInt16)0x1,  @"Getting [next word] should increase PC");
-   
+}
+
+- (void)testLiterals {
+    GHAssertEquals([_emulator getValue:0x20], (UInt16)0x00,  @"Getting first literal");
+    GHAssertEquals([_emulator getValue:0x3f], (UInt16)0x1f,  @"Getting last literal");
+    GHAssertEquals([_emulator getValue:0x31], (UInt16)0x11,  @"Getting random literal");
 }
 
 
