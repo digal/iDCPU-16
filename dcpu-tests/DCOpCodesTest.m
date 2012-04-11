@@ -26,7 +26,7 @@ DCEmulator* _emulator;
 }
 
 - (void)testSet {
-    int b = 0x3f;
+    int b = 0x3f; //literal 0x1f
     int a = X;
     int op = SET;
     
