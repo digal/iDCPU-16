@@ -43,7 +43,7 @@ DCEmulator* _emulator;
     //SET [0x1000], X
     UInt16 val  = 0x1234;
     UInt16 addr = 0x1000;
-    [_emulator setValue:val for:X]; //set x
+    [_emulator setValue:val for:X address:0]; //set x
 
     UInt16 program[2] = {
         SET | (NWP << 4) | (X << 10), //
@@ -52,7 +52,7 @@ DCEmulator* _emulator;
     GHTestLog($str(@"Instruction for \"SET [0x1000], X\": %04x %04x", program[0], program[1]));
     [_emulator loadBinary:&program[0] withLength:2];
     //TODO: rewrite for actual program execution
-    [_emulator setValue:0x0001 for:PC]; //emulate running program
+    [_emulator setValue:0x0001 for:PC address:0]; //emulate running program
     [_emulator exec:program[0]];
     GHAssertEquals([_emulator getValue:PC], (UInt16)2, @"PC should be incremented after setting to memory pointer");
     GHAssertEquals(_emulator->mem[addr], val, @"Value 0x1f should be copied from X to memory");
@@ -73,7 +73,7 @@ DCEmulator* _emulator;
     GHTestLog($str(@"Instruction for \"SET Y, [0x1000]\": %04x %04x", program[0], program[1]));
     [_emulator loadBinary:&program[0] withLength:2];
     //TODO: rewrite for actual program execution
-    [_emulator setValue:0x0001 for:PC]; //emulate running program
+    [_emulator setValue:0x0001 for:PC address:0]; //emulate running program
     [_emulator exec:program[0]];
     GHAssertEquals([_emulator getValue:PC], (UInt16)2, @"PC should be incremented after setting to memory pointer");
     GHAssertEquals([_emulator getValue:Y], val, @"Value 0x1f should be copied from memory to Y");
@@ -96,7 +96,7 @@ DCEmulator* _emulator;
     GHTestLog($str(@"Instruction for \"SET [0x2000], [0x1000]\": %04x %04x %04x", program[0], program[1], program[2]));
     [_emulator loadBinary:&program[0] withLength:3];
     //TODO: rewrite for actual program execution
-    [_emulator setValue:0x0001 for:PC]; //emulate running program
+    [_emulator setValue:0x0001 for:PC address:0]; //emulate running program
     [_emulator exec:program[0]];
     GHAssertEquals([_emulator getValue:PC], (UInt16)3, @"PC should be incremented after setting to memory pointer");
     GHAssertEquals(_emulator->mem[dstAddr], val, @"Value 0x1f should be copied from memory to memory");

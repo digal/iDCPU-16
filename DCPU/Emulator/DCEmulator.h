@@ -29,7 +29,10 @@
 
 //internal stuff for reading/writing values
 - (UInt16) getValue:(UInt8)src;
-- (void) setValue:(UInt16)value for:(UInt8)dst;
+- (void) setValue:(UInt16)value for:(UInt8)dst address:(UInt16)address;
+
+//a should be processed before b, so whe should get destination address and modify PC/SP first
+- (UInt16) getAddrForSet:(UInt8)dst;
 
 //execute single word instruction
 - (void) exec:(UInt16)instr;
