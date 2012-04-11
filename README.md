@@ -11,3 +11,14 @@ DCPU-16 emulator, assembler and IDE for iOS devices
 ## Current status
 
 Emulator is at the very early stage of development, so nothing useful is implemented yet :P
+
+### Implemented so far
+
+- reading and writing values (internal): registers, stack, memory, literal values
+
+### Things to do
+
+- ops
+- assembly
+- emulator GUI (virtual screen)
+- IDE
