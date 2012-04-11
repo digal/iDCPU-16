@@ -78,7 +78,7 @@
         pc = value;
     } else if (dst == O) {
         //0x1d: O
-        o = value && 0x0001; //trim to last bit
+        o = value;
     } else {
         [self error:$str(@"Unknown destination: 0x%02x", dst)];
     }

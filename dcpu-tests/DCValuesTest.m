@@ -64,11 +64,10 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->sp, spVal, @"setValue should work for SP");
     GHAssertEquals([_emulator getValue:SP], spVal, @"getValue should work for SP");
 
-    UInt16 oValBig = 0x4321;
-    UInt16 oVal = 0x0001;
-    [_emulator setValue:oValBig for:O];
-    GHAssertEquals(_emulator->o, oVal, @"setValue should work for O, trimming its value to 1 bit");
-    GHAssertEquals([_emulator getValue:O], oVal, @"getValue should work for O");
+    UInt16 underflow = 0xffff;
+    [_emulator setValue:underflow for:O];
+    GHAssertEquals(_emulator->o, underflow, @"setValue should work for O, trimming its value to 1 bit");
+    GHAssertEquals([_emulator getValue:O], underflow, @"getValue should work for O");
 
 }
 
@@ -150,11 +149,6 @@ DCEmulator* _emulator;
     
 
     GHAssertEquals(_emulator->cycles, (long)0, @"cycles should not increase when working with stack");
-}
-
-- (void)testMemoryValues {
-    
-    
 }
 
 
