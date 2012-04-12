@@ -157,8 +157,28 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->o, (UInt16)0x0001, @"O should be 0x0001, as there's overflow");
     GHAssertEquals(_emulator->pc, (UInt16)0x2, @"pc should be 3");
     GHAssertEquals(_emulator->cycles, 3l, @"ADD [addr], [reg] should take 4 cycles");
-    
 }
+
+- (void)testSub {
+    //SUB Y, X
+    _emulator->regs[Y]=0x23ef;
+    _emulator->regs[X]=0x1234;
+    [_emulator exec:(SUB | (Y << 4) | (X << 10))];
+    GHAssertEquals(_emulator->regs[Y], (UInt16)0x11bb, @"Y should be equal Y - X");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should be 0x0, as there's no overflow");
+    GHAssertEquals(_emulator->cycles, 2l, @"SUB should take 2 cycles");
+}
+
+- (void)testSubWithUnderflow {
+    //SUB X, Y
+    _emulator->regs[X]=0x1234;
+    _emulator->regs[Y]=0x23ef;
+    [_emulator exec:(SUB | (X << 4) | (Y << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0xee45, @"X should be equal X - Y");
+    GHAssertEquals(_emulator->o, (UInt16)0xffff, @"O should be 0xffff, as there's an underflow");
+    GHAssertEquals(_emulator->cycles, 2l, @"SUB should take 2 cycles");
+}
+
 
 
 @end
