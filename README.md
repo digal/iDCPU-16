@@ -15,10 +15,11 @@ Emulator is at the very early stage of development, so nothing useful is impleme
 ### Implemented so far
 
 - reading and writing values (internal): registers, stack, memory, literal values
+- 2/16 ops: `SET`, `ADD`
 
 ### Things to do
 
-- ops
-- assembly
+- remaining 14 ops
+- assembly language
 - emulator GUI (virtual screen)
 - IDE
