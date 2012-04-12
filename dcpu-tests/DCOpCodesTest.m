@@ -103,6 +103,38 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, 2l, @"SET [ADDR], [ADDR] should take 2 cycles");
 }
 
+- (void)testSum {
+    //simple sum 
+    _emulator->regs[X]=0x1000;
+    _emulator->regs[Y]=0x23ef;
+    [_emulator exec:(ADD | (X << 4) | (Y << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x33ef, @"X should be equal X + Y");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should be 0x0, as there's no overflow");
+    GHAssertEquals(_emulator->cycles, 2l, @"ADD should take 2 cycles");
+}
+
+- (void)testSumWithMemory {
+    //simple sum 
+    
+    _emulator->mem[0x1000]=0x3200;
+    _emulator->mem[0x2000]=0x23ef;
+    
+    UInt16 program[3] = {
+        ADD | (NWP << 4) | (NWP << 10), //
+        0x1000,
+        0x2000
+    };
+    
+    [_emulator loadBinary:&program[0] withLength:3];
+    _emulator->pc = 0x1;
+    [_emulator exec:program[0]];
+
+    GHAssertEquals(_emulator->mem[0x1000], (UInt16)0x55ef, @"X should be equal X + Y");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should be 0x0, as there's no overflow");
+    GHAssertEquals(_emulator->pc, (UInt16)0x3, @"pc should be 3");
+    GHAssertEquals(_emulator->cycles, 4l, @"ADD [addr], [addr] should take 4 cycles");
+
+}
 
 
 @end

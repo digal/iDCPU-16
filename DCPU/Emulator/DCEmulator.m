@@ -141,17 +141,24 @@
     UInt8 b =  (instr >> 10) & 0x3f;    //6 bit
     UInt16 aAddr = [self getAddr4Arg:a];
     UInt16 bAddr = [self getAddr4Arg:b];
-//    UInt16 aValue = [self getValue:b fromAddress:aAddr];
     UInt16 bValue = [self getValue:b fromAddress:bAddr];
     switch (op) {
         case 0x0: 
             [self error:@"extended OPS are not supported yet"];
             break;
-        case SET: //0x1: SET a, b - sets a to b
+        case SET: 
+            //0x1: SET a, b - sets a to b
             cycles++;
             [self setValue:bValue for:a forAddress:aAddr];
             break;
-            
+        case ADD: 
+            //0x2: ADD a, b - sets a to a+b, sets O to 0x0001 if there's an overflow, 0x0 otherwise
+            cycles+=2;
+            UInt16 aValue = [self getValue:a fromAddress:aAddr];
+            UInt32 sum = aValue + bValue;
+            [self setValue:(sum & 0xffff) for:a forAddress:aAddr];
+            if (sum > 0xffff) o = 0x0001;
+            else o = 0x0000;
         default:
             [self error:$str(@"unknown op: %1x (instr %04x)", op, instr)];
             break;
