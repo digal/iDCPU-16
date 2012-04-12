@@ -141,7 +141,7 @@
     UInt8 b =  (instr >> 10) & 0x3f;    //6 bit
     UInt16 aAddr = [self getAddr4Arg:a];
     UInt16 bAddr = [self getAddr4Arg:b];
-    UInt16 aValue = [self getValue:b fromAddress:aAddr];
+//    UInt16 aValue = [self getValue:b fromAddress:aAddr];
     UInt16 bValue = [self getValue:b fromAddress:bAddr];
     switch (op) {
         case 0x0: 
