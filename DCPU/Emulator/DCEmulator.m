@@ -141,7 +141,7 @@
     UInt8 b =  (instr >> 10) & 0x3f;    //6 bit
     UInt16 aAddr = [self getAddr4Arg:a];
     UInt16 bAddr = [self getAddr4Arg:b];
-    UInt16 aValue;
+    UInt32 aValue;
     UInt16 bValue = [self getValue:b fromAddress:bAddr];
     switch (op) {
         case 0x0: 
@@ -169,6 +169,20 @@
             [self setValue:(dif & 0xffff) for:a forAddress:aAddr];
             if (dif < 0xffff0000) o = 0xffff;
             else o = 0x0000;
+            break;
+        case SHL:
+            //0x7: SHL a, b - sets a to a<<b, sets O to ((a<<b)>>16)&0xffff
+            cycles+=2;
+            aValue = [self getValue:a fromAddress:aAddr];
+            [self setValue:(aValue<<bValue) for:a forAddress:aAddr];
+            o = ((aValue << bValue) >> 16) & 0xffff;
+            break;
+        case SHR:
+            //0x8: SHR a, b - sets a to a>>b, sets O to ((a<<16)>>b)&0xffff
+            cycles+=2;
+            aValue = [self getValue:a fromAddress:aAddr];
+            [self setValue:(aValue>>bValue) for:a forAddress:aAddr];
+            o = ((aValue << 16) >> bValue) & 0xffff;
             break;
         case AND:
             //0x9: AND a, b - sets a to a&b

@@ -206,5 +206,39 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, 1l, @"XOR should take 1 cycles");
 }
 
+- (void)testShl {
+    //SHL X, Y (0000 0110 = 0x06 -> 0011 0000 = 0x30)
+    _emulator->regs[X]=0x0006; 
+    _emulator->regs[Y]=0x0003;
+    [_emulator exec:(SHL | (X << 4) | (Y << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0030, @"X should be equal 0x0006 << 3");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 2l, @"SHL should take 2 cycles");
+    
+    //overflow
+    //0x30 << 12 (0011 0000 = 0x30 -> 0000 0000 = 0x00, o = 0x03)
+    [_emulator exec:(SHL | (X << 4) | (0x2c << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"X should be equal 0x0030 << 12");
+    GHAssertEquals(_emulator->o, (UInt16)0x0003, @"O should be 3");
+    GHAssertEquals(_emulator->cycles, 4l, @"SHL should take 2 cycles");
+}
+
+- (void)testShr {
+    //SHR X, Y (0110 0000 = 0x60 -> 0000 0011 = 0x03)
+    _emulator->regs[X]=0x0060; 
+    _emulator->regs[Y]=0x0005;
+    [_emulator exec:(SHR | (X << 4) | (Y << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0003, @"X should be equal 0x0060 >> 5");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 2l, @"SHR should take 2 cycles");
+    
+    //overflow
+    //0x03 >> 2 (0000 0011 = 0x03 -> 0000 0000 = 0x00, o = 0xc000)
+    [_emulator exec:(SHR | (X << 4) | (0x22 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"X should be equal 0x0003 >> 2");
+    GHAssertEquals(_emulator->o, (UInt16)0xc000, @"O should be 0xc000");
+    GHAssertEquals(_emulator->cycles, 4l, @"SHR should take 2 cycles");
+}
+
 
 @end
