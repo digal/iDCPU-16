@@ -170,14 +170,6 @@
             if (dif < 0xffff0000) o = 0xffff;
             else o = 0x0000;
             break;
-        case MOD:
-            //0x6: MOD a, b - sets a to a%b. if b==0, sets a to 0 instead.
-            cycles+=3;
-            aValue = [self getValue:a fromAddress:aAddr];
-            if (bValue) [self setValue:aValue % bValue for:a forAddress:aAddr];
-            else [self setValue:0x0000 for:a forAddress:aAddr];
-            break;
-
         case MUL:
             //0x4: MUL a, b - sets a to a*b, sets O to ((a*b)>>16)&0xffff
             cycles+=2;
@@ -185,13 +177,26 @@
             [self setValue:aValue * bValue for:a forAddress:aAddr];
             o = ((aValue * bValue) >> 16) & 0xffff;
             break;
-            
         case DIV:
             //0x5: DIV a, b - sets a to a/b, sets O to ((a<<16)/b)&0xffff. if b==0, sets a and O to 0 instead.
+            //0x6: MOD a, b - sets a to a%b. if b==0, sets a to 0 instead.
             cycles+=3;
-
+            aValue = [self getValue:a fromAddress:aAddr];
+            if (bValue) {
+                [self setValue:aValue / bValue for:a forAddress:aAddr];   
+                o = ((aValue<<16)/bValue)&0xffff;
+            } else {
+                [self setValue:0x0000 for:a forAddress:aAddr];
+                o = 0;
+            }
             break;
-
+        case MOD:
+            //0x6: MOD a, b - sets a to a%b. if b==0, sets a to 0 instead.
+            cycles+=3;
+            aValue = [self getValue:a fromAddress:aAddr];
+            if (bValue) [self setValue:aValue % bValue for:a forAddress:aAddr];
+            else [self setValue:0x0000 for:a forAddress:aAddr];
+            break;
         case SHL:
             //0x7: SHL a, b - sets a to a<<b, sets O to ((a<<b)>>16)&0xffff
             cycles+=2;

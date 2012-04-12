@@ -265,26 +265,49 @@ DCEmulator* _emulator;
 }
 
 - (void)testMul {
-    //MOD X, 0x05 (255 * 5)
+    //MUL X, 0x05 (255 * 5)
     _emulator->regs[X]=0x00ff;
     [_emulator exec:(MUL | (X << 4) | (0x25 << 10))];
     GHAssertEquals(_emulator->regs[X], (UInt16)0x04fb, @"X should be equal 255 * 5 = 1275");
     GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
     GHAssertEquals(_emulator->cycles, 2l, @"MUL should take 2 cycles");
 
-    //MOD X, 0x00  1275 * 0
+    //MUL X, 0x00  1275 * 0
     [_emulator exec:(MUL | (X << 4) | (0x20 << 10))];
     GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"X should be equal 1275 * 0 = 0");
     GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
     GHAssertEquals(_emulator->cycles, 4l, @"MUL should take 2 cycles");
 
-    //MOD X, 0x05 (0xffff * 0x50)
+    //MUL X, 0x05 (0xffff * 0x50)
     _emulator->regs[X]=0xffff;
     _emulator->regs[Y]=0x0050;
     [_emulator exec:(MUL | (X << 4) | (Y << 10))];
     GHAssertEquals(_emulator->regs[X], (UInt16)0xffb0, @"X should be equal 0xffff * 0x0050 = 0xffb0");
     GHAssertEquals(_emulator->o, (UInt16)0x004f, @"O should be 0x004f");
     GHAssertEquals(_emulator->cycles, 6l, @"MUL should take 2 cycles");
+}
+
+- (void)testDiv {
+    //DIV X, 0x05 (255 / 5)
+    _emulator->regs[X]=0x00ff;
+    [_emulator exec:(DIV | (X << 4) | (0x25 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0033, @"X should be equal 255 / 5 = 51");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 3l, @"DIV should take 3 cycles");
+    
+    //DIV X, 0x00  (51 / 0)
+    [_emulator exec:(DIV | (X << 4) | (0x20 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"X should be equal  0");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should be 0");
+    GHAssertEquals(_emulator->cycles, 6l, @"DIV should take 3 cycles");
+    
+    //DIV X, Y  (16 / 64), overflow
+    _emulator->regs[X]=0x0010;
+    _emulator->regs[Y]=0x0040;
+    [_emulator exec:(DIV | (X << 4) | (Y << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"X should be equal 0x0010 / 0x0040 = 0x0000");
+    GHAssertEquals(_emulator->o, (UInt16)0x4000, @"O should be 0x10 0000 / 0x40 = 0x4000");
+    GHAssertEquals(_emulator->cycles, 9l, @"DIV should take 3 cycles");
 }
 
 
