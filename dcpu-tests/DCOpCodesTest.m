@@ -264,4 +264,28 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, 9l, @"MOD should take 3 cycles");
 }
 
+- (void)testMul {
+    //MOD X, 0x05 (255 * 5)
+    _emulator->regs[X]=0x00ff;
+    [_emulator exec:(MUL | (X << 4) | (0x25 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x04fb, @"X should be equal 255 * 5 = 1275");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 2l, @"MUL should take 2 cycles");
+
+    //MOD X, 0x00  1275 * 0
+    [_emulator exec:(MUL | (X << 4) | (0x20 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"X should be equal 1275 * 0 = 0");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 4l, @"MUL should take 2 cycles");
+
+    //MOD X, 0x05 (0xffff * 0x50)
+    _emulator->regs[X]=0xffff;
+    _emulator->regs[Y]=0x0050;
+    [_emulator exec:(MUL | (X << 4) | (Y << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0xffb0, @"X should be equal 0xffff * 0x0050 = 0xffb0");
+    GHAssertEquals(_emulator->o, (UInt16)0x004f, @"O should be 0x004f");
+    GHAssertEquals(_emulator->cycles, 6l, @"MUL should take 2 cycles");
+}
+
+
 @end

@@ -181,8 +181,11 @@
         case MUL:
             //0x4: MUL a, b - sets a to a*b, sets O to ((a*b)>>16)&0xffff
             cycles+=2;
-
+            aValue = [self getValue:a fromAddress:aAddr];
+            [self setValue:aValue * bValue for:a forAddress:aAddr];
+            o = ((aValue * bValue) >> 16) & 0xffff;
             break;
+            
         case DIV:
             //0x5: DIV a, b - sets a to a/b, sets O to ((a<<16)/b)&0xffff. if b==0, sets a and O to 0 instead.
             cycles+=3;
