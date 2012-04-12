@@ -240,5 +240,28 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, 4l, @"SHR should take 2 cycles");
 }
 
+- (void)testMod {
+    //MOD X, 0x03
+    _emulator->regs[X]=0x00ff;
+    [_emulator exec:(MOD | (X << 4) | (0x23 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0, @"X should be equal 255 % 3");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 3l, @"MOD should take 3 cycles");
+
+    //MOD X, 0x03
+    _emulator->regs[X]=0x00fe;
+    [_emulator exec:(MOD | (X << 4) | (0x23 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x02, @"X should be equal 254 % 3");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 6l, @"MOD should take 3 cycles");
+
+    //MOD X, Y(=0)
+    _emulator->regs[X]=0x0ffe;
+    _emulator->regs[Y]=0x0000;
+    [_emulator exec:(MOD | (X << 4) | (Y << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x00, @"X should be equal zero");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 9l, @"MOD should take 3 cycles");
+}
 
 @end
