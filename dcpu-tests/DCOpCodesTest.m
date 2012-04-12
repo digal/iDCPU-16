@@ -179,6 +179,32 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->cycles, 2l, @"SUB should take 2 cycles");
 }
 
+- (void)testAnd {
+    //AND X, 0x05
+    _emulator->regs[X]=0x0f0f;
+    [_emulator exec:(AND | (X << 4) | (0x25 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0005, @"X should be equal 0x0f0f & 0x05");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 1l, @"AND should take 1 cycles");
+}
+
+- (void)testBor {
+    //BOR X, 0x05
+    _emulator->regs[X]=0x0ff2;
+    [_emulator exec:(BOR | (X << 4) | (0x25 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0ff7, @"X should be equal 0x0ff2 | 0x05");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 1l, @"BOR should take 1 cycles");
+}
+
+- (void)testXor {
+    //XOR X, 0x17
+    _emulator->regs[X]=0x0ff2;
+    [_emulator exec:(XOR | (X << 4) | (0x37 << 10))];
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0fe5, @"X should be equal 0x0ff2 ^ 0x17");
+    GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should remain untouched");
+    GHAssertEquals(_emulator->cycles, 1l, @"XOR should take 1 cycles");
+}
 
 
 @end

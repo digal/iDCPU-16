@@ -170,6 +170,24 @@
             if (dif < 0xffff0000) o = 0xffff;
             else o = 0x0000;
             break;
+        case AND:
+            //0x9: AND a, b - sets a to a&b
+            cycles++;
+            aValue = [self getValue:a fromAddress:aAddr];
+            [self setValue:(aValue & bValue) for:a forAddress:aAddr];
+            break;
+        case BOR:
+            //0xa: BOR a, b - sets a to a|b
+            cycles++;
+            aValue = [self getValue:a fromAddress:aAddr];
+            [self setValue:(aValue | bValue) for:a forAddress:aAddr];
+            break;
+        case XOR:    
+            //0xb: XOR a, b - sets a to a^b
+            cycles++;
+            aValue = [self getValue:a fromAddress:aAddr];
+            [self setValue:(aValue ^ bValue) for:a forAddress:aAddr];
+            break;
         default:
             [self error:$str(@"unknown op: %1x (instr %04x)", op, instr)];
             break;
