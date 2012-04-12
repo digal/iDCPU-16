@@ -15,11 +15,11 @@ Emulator is at the very early stage of development, so nothing useful is impleme
 ### Implemented so far
 
 - reading and writing values (internal): registers, stack, memory, literal values
-- 8/16 ops: `SET`, `ADD`, `SUB`, `SHL`, `SHR`, `AND`, `BOR`, `XOR`
+- 11/16 ops: `SET`, `ADD`, `SUB`, `MUL`, `DIV`, `MOD`, `SHL`, `SHR`, `AND`, `BOR`, `XOR`
 
 ### Things to do
 
-- remaining 8 ops
+- remaining 5 ops
 - assembly language
 - emulator GUI (virtual screen)
 - IDE
