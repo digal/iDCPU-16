@@ -14,12 +14,12 @@ Emulator is at the very early stage of development, so nothing useful is impleme
 
 ### Implemented so far
 
-- reading and writing values (internal): registers, stack, memory, literal values
-- 15/16 ops: `SET`, `ADD`, `SUB`, `MUL`, `DIV`, `MOD`, `SHL`, `SHR`, `AND`, `BOR`, `XOR`, `IFE`, `IFN`, `IFG`, `IFB`
+- emulator internals (able to execute bytecode according to spec)
 
 ### Things to do
 
-- JSR op
-- assembly language
-- emulator GUI (virtual screen)
+- display 
+- keyboard
+- storage
+- assembler
 - IDE
