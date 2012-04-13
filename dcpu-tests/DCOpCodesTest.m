@@ -51,9 +51,7 @@ DCEmulator* _emulator;
     };
     GHTestLog($str(@"Instruction for \"SET [0x1000], X\": %04x %04x", program[0], program[1]));
     [_emulator loadBinary:program withLength:2];
-    //TODO: rewrite for actual program execution
-    [_emulator setValue:0x0001 for:PC forAddress:0x0]; //emulate running program
-    [_emulator exec:program[0]];
+    [_emulator step];
     GHAssertEquals([_emulator getValue:PC fromAddress:0x0], (UInt16)2, @"PC should be incremented after setting to memory pointer");
     GHAssertEquals(_emulator->mem[addr], val, @"Value 0x1f should be copied from X to memory");
     GHAssertEquals(_emulator->cycles, 1l, @"SET [ADDR], REG should take 1 cycle");
@@ -72,9 +70,7 @@ DCEmulator* _emulator;
     _emulator->mem[addr] = val; //put test value into memory
     GHTestLog($str(@"Instruction for \"SET Y, [0x1000]\": %04x %04x", program[0], program[1]));
     [_emulator loadBinary:program withLength:2];
-    //TODO: rewrite for actual program execution
-    [_emulator setValue:0x0001 for:PC forAddress:0x0]; //emulate running program
-    [_emulator exec:program[0]];
+    [_emulator step];
     GHAssertEquals([_emulator getValue:PC fromAddress:0x0], (UInt16)2, @"PC should be incremented after setting to memory pointer");
     GHAssertEquals([_emulator getValue:Y fromAddress:0x0], val, @"Value 0x1f should be copied from memory to Y");
     GHAssertEquals(_emulator->cycles, 2l, @"SET REG, [ADDR] should take 2 cycles");
@@ -96,8 +92,7 @@ DCEmulator* _emulator;
     GHTestLog($str(@"Instruction for \"SET [0x2000], [0x1000]\": %04x %04x %04x", program[0], program[1], program[2]));
     [_emulator loadBinary:program withLength:3];
     //TODO: rewrite for actual program execution
-    [_emulator setValue:0x0001 for:PC forAddress:0x0]; //emulate running program
-    [_emulator exec:program[0]];
+    [_emulator step];
     GHAssertEquals([_emulator getValue:PC fromAddress:0x0], (UInt16)3, @"PC should be incremented after setting to memory pointer");
     GHAssertEquals(_emulator->mem[dstAddr], val, @"Value 0x1f should be copied from memory to memory");
     GHAssertEquals(_emulator->cycles, 2l, @"SET [ADDR], [ADDR] should take 2 cycles");
@@ -126,8 +121,7 @@ DCEmulator* _emulator;
     };
     
     [_emulator loadBinary:program withLength:3];
-    _emulator->pc = 0x1;
-    [_emulator exec:program[0]];
+    [_emulator step];
 
     GHAssertEquals(_emulator->mem[0x1000], (UInt16)0x55ef, @"X should be equal X + Y");
     GHAssertEquals(_emulator->o, (UInt16)0x0, @"O should be 0x0, as there's no overflow");
@@ -150,8 +144,7 @@ DCEmulator* _emulator;
     };
     
     [_emulator loadBinary:program withLength:2];
-    _emulator->pc = 0x1;
-    [_emulator exec:program[0]];
+    [_emulator step];
     
     GHAssertEquals(_emulator->mem[0x1000], (UInt16)0xeeed, @"X should be equal X + Y");
     GHAssertEquals(_emulator->o, (UInt16)0x0001, @"O should be 0x0001, as there's overflow");
@@ -308,6 +301,44 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"X should be equal 0x0010 / 0x0040 = 0x0000");
     GHAssertEquals(_emulator->o, (UInt16)0x4000, @"O should be 0x10 0000 / 0x40 = 0x4000");
     GHAssertEquals(_emulator->cycles, 9l, @"DIV should take 3 cycles");
+}
+
+- (void)testIFE {
+    UInt16 program[28] = {
+        //equals
+        IFE | (NW << 4) | (NW << 10), 0x1234, 0x1234, 
+        SET | (NWP << 4) | (NW << 10), 0x1000, 0xABBA, //this should be executed
+
+        //skip op with a word
+        IFE | (NW << 4) | (NW << 10), 0x1234, 0x1235, 
+        SET | (J << 4) | (NW << 10), 0xDEAD, //this should be skipped
+        SET | (X << 4) | (NW << 10), 0xAAAA, //should be exec'd anyway
+
+        //skip op with b word
+        IFE | (0x25 << 4) | (NW << 10), 0x0006,
+        SET | (NWP << 4) | (0x3f << 10), 0x1002, //this should be skipped
+        SET | (Y << 4) | (NW << 10), 0xBBBB, //should be exec'd anyway
+
+        //skip op with a and b words
+        IFE | (NW << 4) | (NW << 10), 0x1234, 0xbcde,
+        SET | (NWP << 4) | (NW << 10), 0x1003, 0xCACA, //this should be skipped
+        SET | (I << 4) | (NW << 10), 0xCCCC //should be exec'd anyway
+};
+    
+    [_emulator loadBinary:program withLength:28];
+    while (_emulator->pc<28) {
+        [_emulator step];
+    }
+    
+    GHAssertEquals(_emulator->mem[0x1000], (UInt16)0xABBA, @"IFE should exec next instruction if numbers are equal");
+
+    GHAssertEquals(_emulator->regs[J], (UInt16)0x0000, @"IFE should skip next op with arg words if a!=b");
+
+    GHAssertEquals(_emulator->mem[0x1002], (UInt16)0x0000, @"IFE should skip next op with arg words if a!=b");
+
+    GHAssertEquals(_emulator->regs[X], (UInt16)0xAAAA, @"This op should be executed anyway");
+    GHAssertEquals(_emulator->regs[Y], (UInt16)0xBBBB, @"This op should be executed anyway");
+    GHAssertEquals(_emulator->regs[I], (UInt16)0xCCCC, @"This op should be executed anyway");
 }
 
 
