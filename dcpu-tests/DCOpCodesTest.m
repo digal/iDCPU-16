@@ -458,11 +458,9 @@ DCEmulator* _emulator;
 
 - (void)testJSR {
     UInt16 program[11] = {
-        //equals
         0x0 | (JSR << 4) | (NW << 10), 0x0008, //jump to the 3rd line
         SET | (X << 4) | (NW << 10), 0xAAAA, //this is gonna be skipped
         
-        //skip op with a word
         0x0, 0x0, 0x0, 0x0, //junk
         SET | (Y << 4) | (NW << 10), 0xDEAD, //this should executed
         SET | (Z << 4) | (POP << 10)         //check stack
