@@ -304,7 +304,7 @@ DCEmulator* _emulator;
 }
 
 - (void)testIFE {
-    UInt16 program[28] = {
+    UInt16 program[27] = {
         //equals
         IFE | (NW << 4) | (NW << 10), 0x1234, 0x1234, 
         SET | (NWP << 4) | (NW << 10), 0x1000, 0xABBA, //this should be executed
@@ -325,8 +325,8 @@ DCEmulator* _emulator;
         SET | (I << 4) | (NW << 10), 0xCCCC //should be exec'd anyway
 };
     
-    [_emulator loadBinary:program withLength:28];
-    while (_emulator->pc<28) {
+    [_emulator loadBinary:program withLength:27];
+    while (_emulator->pc<27) {
         [_emulator step];
     }
     
@@ -336,6 +336,44 @@ DCEmulator* _emulator;
 
     GHAssertEquals(_emulator->mem[0x1002], (UInt16)0x0000, @"IFE should skip next op with arg words if a!=b");
 
+    GHAssertEquals(_emulator->regs[X], (UInt16)0xAAAA, @"This op should be executed anyway");
+    GHAssertEquals(_emulator->regs[Y], (UInt16)0xBBBB, @"This op should be executed anyway");
+    GHAssertEquals(_emulator->regs[I], (UInt16)0xCCCC, @"This op should be executed anyway");
+}
+
+- (void)testIFN {
+    UInt16 program[28] = {
+        //equals
+        IFN | (NW << 4) | (NW << 10), 0x1234, 0x1235, 
+        SET | (NWP << 4) | (NW << 10), 0x1000, 0xABBA, //this should be executed
+        
+        //skip op with a word
+        IFN | (NW << 4) | (NW << 10), 0x1234, 0x1234, 
+        SET | (J << 4) | (NW << 10), 0xDEAD, //this should be skipped
+        SET | (X << 4) | (NW << 10), 0xAAAA, //should be exec'd anyway
+        
+        //skip op with b word
+        IFN | (NW << 4) | (NW << 10), 0x0006, 0x0006,
+        SET | (NWP << 4) | (0x3f << 10), 0x1002, //this should be skipped
+        SET | (Y << 4) | (NW << 10), 0xBBBB, //should be exec'd anyway
+        
+        //skip op with a and b words
+        IFN | (NW << 4) | (NW << 10), 0xbcde, 0xbcde,
+        SET | (NWP << 4) | (NW << 10), 0x1003, 0xCACA, //this should be skipped
+        SET | (I << 4) | (NW << 10), 0xCCCC //should be exec'd anyway
+    };
+    
+    [_emulator loadBinary:program withLength:28];
+    while (_emulator->pc<28) {
+        [_emulator step];
+    }
+    
+    GHAssertEquals(_emulator->mem[0x1000], (UInt16)0xABBA, @"IFN should exec next instruction if numbers are not equal");
+    
+    GHAssertEquals(_emulator->regs[J], (UInt16)0x0000, @"IFN should skip next op with arg words if a==b");
+    
+    GHAssertEquals(_emulator->mem[0x1002], (UInt16)0x0000, @"IFN should skip next op with arg words if a==b");
+    
     GHAssertEquals(_emulator->regs[X], (UInt16)0xAAAA, @"This op should be executed anyway");
     GHAssertEquals(_emulator->regs[Y], (UInt16)0xBBBB, @"This op should be executed anyway");
     GHAssertEquals(_emulator->regs[I], (UInt16)0xCCCC, @"This op should be executed anyway");
