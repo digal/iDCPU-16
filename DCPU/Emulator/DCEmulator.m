@@ -157,7 +157,11 @@
     UInt8 op = instr         & 0xf;     //4 bit
     UInt8 a =  (instr >> 4)  & 0x3f;    //6 bit
     UInt8 b =  (instr >> 10) & 0x3f;    //6 bit
-    UInt16 aAddr = [self getAddr4Arg:a];
+    UInt8 xop = a; 
+    UInt16 aAddr;
+    if (op!=0x0) { //extended op case
+        aAddr = [self getAddr4Arg:a];
+    }
     UInt16 bAddr = [self getAddr4Arg:b];
     UInt32 aValue;
     if (op!=0x0 && op!=SET) {
@@ -165,8 +169,25 @@
     }
     UInt16 bValue = [self getValue:b fromAddress:bAddr];
     switch (op) {
+        //TODO: better code structure (extended ops as the separate `if` branch)
         case 0x0: 
-            [self error:@"extended OPS are not supported yet"];
+            //extended ops
+            //Non-basic opcodes always have their lower four bits unset, have one value and a six bit opcode.
+            //In binary, they have the format: aaaaaaoooooo0000
+
+            //aaaaaa from the spec = our b
+            switch (xop) {
+                case 0x01:
+                    //0x01: JSR a - pushes the address of the next instruction to the stack, then sets PC to a
+                    cycles++;
+                    mem[--sp] = pc;
+                    pc = bValue;
+                    break;
+                default:
+                    [self error:$str(@"unknown extended op: %1x (instr %04x)", xop, instr)];
+                    break;
+            }
+            
             break;
         case SET: 
             //0x1: SET a, b - sets a to b

@@ -341,6 +341,7 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->regs[I], (UInt16)0xCCCC, @"This op should be executed anyway");
 }
 
+//TODO: check cycles in IF* tests
 - (void)testIFN {
     UInt16 program[28] = {
         //equals
@@ -453,6 +454,28 @@ DCEmulator* _emulator;
     GHAssertEquals(_emulator->regs[X], (UInt16)0xAAAA, @"This op should be executed anyway");
     GHAssertEquals(_emulator->regs[Y], (UInt16)0xBBBB, @"This op should be executed anyway");
     GHAssertEquals(_emulator->regs[I], (UInt16)0xCCCC, @"This op should be executed anyway");
+}
+
+- (void)testJSR {
+    UInt16 program[11] = {
+        //equals
+        0x0 | (JSR << 4) | (NW << 10), 0x0008, //jump to the 3rd line
+        SET | (X << 4) | (NW << 10), 0xAAAA, //this is gonna be skipped
+        
+        //skip op with a word
+        0x0, 0x0, 0x0, 0x0, //junk
+        SET | (Y << 4) | (NW << 10), 0xDEAD, //this should executed
+        SET | (Z << 4) | (POP << 10)         //check stack
+    };
+
+    [_emulator loadBinary:program withLength:11];
+    while (_emulator->pc<11) {
+        [_emulator step];
+    }
+    
+    GHAssertEquals(_emulator->regs[X], (UInt16)0x0000, @"JSR should skip 2st line");
+    GHAssertEquals(_emulator->regs[Y], (UInt16)0xDEAD, @"JSR should go to the 4th line");
+    GHAssertEquals(_emulator->regs[Z], (UInt16)0x0002, @"Stack should contain addr of the line 2");
 }
 
 
