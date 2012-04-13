@@ -110,52 +110,52 @@ DCEmulator* _emulator;
 
 - (void) testStack {
     GHAssertEquals(_emulator->cycles, (long)0, @"cycles should be 0 at the beginning");
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xffff, @"SP should point to the beginning of the stack");
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0x0000, @"SP should point to the beginning of the stack");
 
     UInt16 argAddr = [_emulator getAddr4Arg:PUSH];
     [_emulator setValue:1 for:PUSH forAddress:argAddr];
     NSLog(@"PUSH %@", [_emulator state]);
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffe, @"SP should point to the beginning of the stack - 1 word");
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xffff, @"SP should point to the beginning of the stack - 1 word");
     
     argAddr = [_emulator getAddr4Arg:PUSH];
     [_emulator setValue:2 for:PUSH forAddress:argAddr];
     NSLog(@"PUSH %@", [_emulator state]);
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffd, @"SP should point to the beginning of the stack - 2 words");
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffe, @"SP should point to the beginning of the stack - 2 words");
     
     argAddr = [_emulator getAddr4Arg:PUSH];
     [_emulator setValue:3 for:PUSH forAddress:argAddr];
     NSLog(@"PUSH %@", [_emulator state]);
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffc, @"SP should point to the beginning of the stack - 3 words");
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffd, @"SP should point to the beginning of the stack - 3 words");
 
     
     argAddr = [_emulator getAddr4Arg:PEEK];
     GHAssertEquals([_emulator getValue:PEEK fromAddress:argAddr], (UInt16)3, @"Seek should read 3");
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffc, @"SP should point to the beginning of the stack - 3 words");
-    NSLog(@"SEEK %@", [_emulator state]);
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffd, @"SP should point to the beginning of the stack - 3 words");
+    NSLog(@"PEEK %@", [_emulator state]);
 
     argAddr = [_emulator getAddr4Arg:PEEK];
     GHAssertEquals([_emulator getValue:PEEK fromAddress:argAddr], (UInt16)3, @"Seek should not change a stack pointer");
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffc, @"SP should point to the beginning of the stack - 3 words");
-    NSLog(@"SEEK %@", [_emulator state]);
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffd, @"SP should point to the beginning of the stack - 3 words");
+    NSLog(@"PEEK %@", [_emulator state]);
     
     argAddr = [_emulator getAddr4Arg:POP];
     GHAssertEquals([_emulator getValue:POP fromAddress:argAddr],  (UInt16)3, @"Pop should pop 3");
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffd, @"SP should point to the beginning of the stack - 2 words");
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffe, @"SP should point to the beginning of the stack - 2 words");
     NSLog(@"POP %@", [_emulator state]);
 
     argAddr = [_emulator getAddr4Arg:POP];
     GHAssertEquals([_emulator getValue:POP fromAddress:argAddr],  (UInt16)2, @"Pop should pop 2");
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffe, @"SP should point to the beginning of the stack - 1 word");
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xffff, @"SP should point to the beginning of the stack - 1 word");
     NSLog(@"POP %@", [_emulator state]);
     
     argAddr = [_emulator getAddr4Arg:PEEK];
     GHAssertEquals([_emulator getValue:PEEK fromAddress:argAddr], (UInt16)1, @"Seek should read 1");
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xfffe, @"SP should point to the beginning of the stack - 1 word");
-    NSLog(@"SEEK %@", [_emulator state]);
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xffff, @"SP should point to the beginning of the stack - 1 word");
+    NSLog(@"PEEK %@", [_emulator state]);
     
     argAddr = [_emulator getAddr4Arg:POP];
     GHAssertEquals([_emulator getValue:POP fromAddress:argAddr],  (UInt16)1, @"Pop should pop 1");
-    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0xffff, @"SP should point to the beginning of the stack");
+    GHAssertEquals([_emulator getValue:SP fromAddress:0x0],  (UInt16)0x0000, @"SP should point to the beginning of the stack");
     NSLog(@"POP %@", [_emulator state]);
     
 

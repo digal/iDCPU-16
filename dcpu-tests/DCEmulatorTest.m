@@ -26,7 +26,7 @@ DCEmulator* _emulator;
 }
 
 - (void) testInitState {
-    GHAssertTrue(_emulator->sp == 0xffff, @"Stack pointer should be 0xffff");
+    GHAssertTrue(_emulator->sp == 0x0000, @"Stack pointer should be 0x0000");
     GHAssertTrue(_emulator->pc == 0, @"PC should be 0");
     GHAssertTrue(_emulator->o  == 0,  @"Overflow flag should be 0");
     
@@ -37,7 +37,7 @@ DCEmulator* _emulator;
 
 - (void) testLoadBinary {
     UInt16 sample[4] = {0x0001, 0x0022, 0x0333, 0xffff};
-    [_emulator loadBinary:&sample[0] withLength:4];
+    [_emulator loadBinary:sample withLength:4];
     
     for (int i=0; i<=3; i++) {
         GHAssertEquals(_emulator->mem[i], sample[i], $str(@"%dst word of program should be == %04x",i, sample[i]));

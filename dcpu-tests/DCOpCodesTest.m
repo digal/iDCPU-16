@@ -50,7 +50,7 @@ DCEmulator* _emulator;
         addr
     };
     GHTestLog($str(@"Instruction for \"SET [0x1000], X\": %04x %04x", program[0], program[1]));
-    [_emulator loadBinary:&program[0] withLength:2];
+    [_emulator loadBinary:program withLength:2];
     //TODO: rewrite for actual program execution
     [_emulator setValue:0x0001 for:PC forAddress:0x0]; //emulate running program
     [_emulator exec:program[0]];
@@ -71,7 +71,7 @@ DCEmulator* _emulator;
     };
     _emulator->mem[addr] = val; //put test value into memory
     GHTestLog($str(@"Instruction for \"SET Y, [0x1000]\": %04x %04x", program[0], program[1]));
-    [_emulator loadBinary:&program[0] withLength:2];
+    [_emulator loadBinary:program withLength:2];
     //TODO: rewrite for actual program execution
     [_emulator setValue:0x0001 for:PC forAddress:0x0]; //emulate running program
     [_emulator exec:program[0]];
@@ -94,7 +94,7 @@ DCEmulator* _emulator;
     };
     _emulator->mem[srcAddr] = val; //put test value into memory
     GHTestLog($str(@"Instruction for \"SET [0x2000], [0x1000]\": %04x %04x %04x", program[0], program[1], program[2]));
-    [_emulator loadBinary:&program[0] withLength:3];
+    [_emulator loadBinary:program withLength:3];
     //TODO: rewrite for actual program execution
     [_emulator setValue:0x0001 for:PC forAddress:0x0]; //emulate running program
     [_emulator exec:program[0]];
@@ -125,7 +125,7 @@ DCEmulator* _emulator;
         0x2000
     };
     
-    [_emulator loadBinary:&program[0] withLength:3];
+    [_emulator loadBinary:program withLength:3];
     _emulator->pc = 0x1;
     [_emulator exec:program[0]];
 
@@ -149,7 +149,7 @@ DCEmulator* _emulator;
         0x1000
     };
     
-    [_emulator loadBinary:&program[0] withLength:2];
+    [_emulator loadBinary:program withLength:2];
     _emulator->pc = 0x1;
     [_emulator exec:program[0]];
     

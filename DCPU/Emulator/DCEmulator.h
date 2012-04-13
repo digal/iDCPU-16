@@ -11,7 +11,10 @@
 #import "Values.h"
 
 #define MEMSIZE 0x10000
-#define STACK_START 0xffff
+
+//https://twitter.com/#!/notch/status/187636538870468608
+//SP starts at 0. The first PUSH is to --SP, which is 0xFFFF
+#define STACK_START 0x0000; 
 
 @interface DCEmulator : NSObject {
 @public    
