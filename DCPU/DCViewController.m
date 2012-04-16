@@ -14,6 +14,7 @@
 @implementation DCViewController
 @synthesize scrollView;
 @synthesize screen;
+@synthesize dcpu;
 
 - (void)viewDidLoad
 {
@@ -22,6 +23,7 @@
     NSLog(@"view: %@", screen.view);
     [self.scrollView addSubview:screen.view];
     screen.view.frame = CGRectMake(0, 0, 320, 256);
+    
     
 	// Do any additional setup after loading the view, typically from a nib.
 }

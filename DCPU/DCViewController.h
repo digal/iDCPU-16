@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DCScreenViewController.h"
+#import "DCEmulator.h"
 
 @interface DCViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) DCScreenViewController *screen;
+@property (strong, nonatomic) DCEmulator *dcpu; 
 @end

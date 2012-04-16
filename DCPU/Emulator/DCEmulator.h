@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Instructions.h"
-#import "Values.h"
+#import "DCInstructions.h"
+#import "DCValues.h"
 #import "DCHardwareHandler.h"
+#import "DCMemory.h"
 
 #define MEMSIZE 0x10000
 

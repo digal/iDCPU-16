@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCEmulator.h"
 
 @class DCViewController;
 
@@ -15,5 +16,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) DCViewController *viewController;
+
+- (DCEmulator*) createEmulator;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "DCScreenViewController.h"
-
 @interface DCScreenViewController ()
 
 @end
@@ -24,6 +23,13 @@
     return self;
 }
 
+- (void)loadView {
+    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectZero];
+    self.view = view;
+    self.screenView = view;
+    return;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,7 +44,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     CGSize size = self.view.frame.size;
+    
+    
+    NSLog(@"Virtual size: %dx%d", PIX_W, PIX_H);
+    NSLog(@"Onscreen size: %fx%f", size.width, size.height);
 
+    int hFactor = (int)size.height / PIX_H;
+    int wFactor = (int)size.width /  PIX_W;
+    NSLog(@"wFactor = %d, hFactor = %d", wFactor, hFactor);
+    
+    self.screenView.pixelMultiplier = MAX(hFactor, wFactor);
+
+    NSLog(@"_pixelMultiplier = %d", _pixelMultiplier);
     
 }
 

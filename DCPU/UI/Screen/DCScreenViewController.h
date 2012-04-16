@@ -7,24 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#define ROW_CHARS = 32
-#define COL_CHARS = 12
-
-#define BORDER_PX = 16
-
-#define CHAR_W = 4
-#define CHAR_H = 8
-
-#define PIX_W = CHAR_W*ROW_CHARS + BORDER_PX*2;
-#define PIX_H = CHAR_H*COL_CHARS + BORDER_PX*2;
-
+#import "DCScreenView.h"
 
 @interface DCScreenViewController : UIViewController {
     int _pixelMultiplier;
 }
 
-
+@property (nonatomic, strong) DCScreenView* screenView;
 //- (void) handleEmulator;
 
 @end

@@ -18,44 +18,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    DCEmulator *dcu = [[DCEmulator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    DCViewController *vc;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[DCViewController alloc] initWithNibName:@"DCViewController_iPhone" bundle:nil];
+        vc = [[DCViewController alloc] initWithNibName:@"DCViewController_iPhone" bundle:nil];
     } else {
-        self.viewController = [[DCViewController alloc] initWithNibName:@"DCViewController_iPad" bundle:nil];
+        vc = [[DCViewController alloc] initWithNibName:@"DCViewController_iPad" bundle:nil];
     }
+    self.viewController.dcpu = [self createEmulator];
+    self.viewController = vc;
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (DCEmulator*) createEmulator {
+    DCEmulator *dce = [[DCEmulator alloc] init];
+    //set top-left char to 'A'
+    dce->mem[VMEM_FONT_START + (0x41 * 2)] = 0x7E09;
+    dce->mem[VMEM_FONT_START + (0x41 * 2)] = 0x7E00;
+    dce->mem[VMEM_DISPLAY_START] = (UInt16)'A';
+    return dce;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
 
 @end

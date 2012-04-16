@@ -28,6 +28,8 @@
 		AAB90992153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */; };
 		AAB909A7153C1B33007AA0B6 /* DCScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */; };
 		AAB909A8153C1B33007AA0B6 /* DCScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */; };
+		AAB909AE153C24F7007AA0B6 /* DCScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909AD153C24F7007AA0B6 /* DCScreenView.m */; };
+		AAB909AF153C24F7007AA0B6 /* DCScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909AD153C24F7007AA0B6 /* DCScreenView.m */; };
 		AACA955B1534B30500D5AE46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955A1534B30500D5AE46 /* UIKit.framework */; };
 		AACA955D1534B30500D5AE46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955C1534B30500D5AE46 /* Foundation.framework */; };
 		AACA955F1534B30500D5AE46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955E1534B30500D5AE46 /* CoreGraphics.framework */; };
@@ -54,12 +56,15 @@
 		AA95CF2A1534C5F400F544F2 /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA95CF2C1534C5F400F544F2 /* DCPU copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DCPU copy-Info.plist"; path = "/Users/digal/work/ios/dcpu/DCPU copy-Info.plist"; sourceTree = "<absolute>"; };
 		AA95CF2F1534C67000F544F2 /* DCValuesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCValuesTest.m; sourceTree = "<group>"; };
-		AA95CF321534C85500F544F2 /* Instructions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Instructions.h; path = Emulator/Instructions.h; sourceTree = "<group>"; };
-		AA95CF331534CB5F00F544F2 /* Values.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Values.h; path = Emulator/Values.h; sourceTree = "<group>"; };
+		AA95CF321534C85500F544F2 /* DCInstructions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DCInstructions.h; path = Emulator/DCInstructions.h; sourceTree = "<group>"; };
+		AA95CF331534CB5F00F544F2 /* DCValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DCValues.h; path = Emulator/DCValues.h; sourceTree = "<group>"; };
 		AAB9098F153C0B00007AA0B6 /* DCHardwareHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCHardwareHandler.h; path = Emulator/DCHardwareHandler.h; sourceTree = "<group>"; };
 		AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCHardwareHandler.m; path = Emulator/DCHardwareHandler.m; sourceTree = "<group>"; };
 		AAB909A5153C1B33007AA0B6 /* DCScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCScreenViewController.h; path = UI/Screen/DCScreenViewController.h; sourceTree = "<group>"; };
 		AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCScreenViewController.m; path = UI/Screen/DCScreenViewController.m; sourceTree = "<group>"; };
+		AAB909AC153C24F7007AA0B6 /* DCScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCScreenView.h; path = UI/Screen/DCScreenView.h; sourceTree = "<group>"; };
+		AAB909AD153C24F7007AA0B6 /* DCScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCScreenView.m; path = UI/Screen/DCScreenView.m; sourceTree = "<group>"; };
+		AAB909D2153C9238007AA0B6 /* DCMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCMemory.h; path = Emulator/DCMemory.h; sourceTree = "<group>"; };
 		AACA95561534B30500D5AE46 /* DCPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACA955A1534B30500D5AE46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AACA955C1534B30500D5AE46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -141,6 +146,8 @@
 			children = (
 				AAB909A5153C1B33007AA0B6 /* DCScreenViewController.h */,
 				AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */,
+				AAB909AC153C24F7007AA0B6 /* DCScreenView.h */,
+				AAB909AD153C24F7007AA0B6 /* DCScreenView.m */,
 			);
 			name = Screen;
 			sourceTree = "<group>";
@@ -211,10 +218,11 @@
 			children = (
 				AACA957B1534B35F00D5AE46 /* DCEmulator.h */,
 				AACA957C1534B35F00D5AE46 /* DCEmulator.m */,
-				AA95CF321534C85500F544F2 /* Instructions.h */,
-				AA95CF331534CB5F00F544F2 /* Values.h */,
+				AA95CF321534C85500F544F2 /* DCInstructions.h */,
+				AA95CF331534CB5F00F544F2 /* DCValues.h */,
 				AAB9098F153C0B00007AA0B6 /* DCHardwareHandler.h */,
 				AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */,
+				AAB909D2153C9238007AA0B6 /* DCMemory.h */,
 			);
 			name = Emulator;
 			sourceTree = "<group>";
@@ -357,6 +365,7 @@
 				AA63981D15360185008C8968 /* DCEmulatorTest.m in Sources */,
 				AAB90992153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */,
 				AAB909A8153C1B33007AA0B6 /* DCScreenViewController.m in Sources */,
+				AAB909AF153C24F7007AA0B6 /* DCScreenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +379,7 @@
 				AACA957D1534B35F00D5AE46 /* DCEmulator.m in Sources */,
 				AAB90991153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */,
 				AAB909A7153C1B33007AA0B6 /* DCScreenViewController.m in Sources */,
+				AAB909AE153C24F7007AA0B6 /* DCScreenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
