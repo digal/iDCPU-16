@@ -26,6 +26,8 @@
 		AA95CF311534C7CE00F544F2 /* DCValuesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA95CF2F1534C67000F544F2 /* DCValuesTest.m */; };
 		AAB90991153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */; };
 		AAB90992153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */; };
+		AAB909A7153C1B33007AA0B6 /* DCScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */; };
+		AAB909A8153C1B33007AA0B6 /* DCScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */; };
 		AACA955B1534B30500D5AE46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955A1534B30500D5AE46 /* UIKit.framework */; };
 		AACA955D1534B30500D5AE46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955C1534B30500D5AE46 /* Foundation.framework */; };
 		AACA955F1534B30500D5AE46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955E1534B30500D5AE46 /* CoreGraphics.framework */; };
@@ -56,6 +58,8 @@
 		AA95CF331534CB5F00F544F2 /* Values.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Values.h; path = Emulator/Values.h; sourceTree = "<group>"; };
 		AAB9098F153C0B00007AA0B6 /* DCHardwareHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCHardwareHandler.h; path = Emulator/DCHardwareHandler.h; sourceTree = "<group>"; };
 		AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCHardwareHandler.m; path = Emulator/DCHardwareHandler.m; sourceTree = "<group>"; };
+		AAB909A5153C1B33007AA0B6 /* DCScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCScreenViewController.h; path = UI/Screen/DCScreenViewController.h; sourceTree = "<group>"; };
+		AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCScreenViewController.m; path = UI/Screen/DCScreenViewController.m; sourceTree = "<group>"; };
 		AACA95561534B30500D5AE46 /* DCPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACA955A1534B30500D5AE46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AACA955C1534B30500D5AE46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -135,6 +139,8 @@
 		AAB9098E153C07E4007AA0B6 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				AAB909A5153C1B33007AA0B6 /* DCScreenViewController.h */,
+				AAB909A6153C1B33007AA0B6 /* DCScreenViewController.m */,
 			);
 			name = Screen;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				AA63981A1535BB8C008C8968 /* DCOpCodesTest.m in Sources */,
 				AA63981D15360185008C8968 /* DCEmulatorTest.m in Sources */,
 				AAB90992153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */,
+				AAB909A8153C1B33007AA0B6 /* DCScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +369,7 @@
 				AACA956E1534B30500D5AE46 /* DCViewController.m in Sources */,
 				AACA957D1534B35F00D5AE46 /* DCEmulator.m in Sources */,
 				AAB90991153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */,
+				AAB909A7153C1B33007AA0B6 /* DCScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

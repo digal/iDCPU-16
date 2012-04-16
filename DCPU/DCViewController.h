@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCScreenViewController.h"
 
 @interface DCViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) DCScreenViewController *screen;
 @end
