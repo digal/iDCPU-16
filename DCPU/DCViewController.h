@@ -14,4 +14,9 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) DCScreenViewController *screen;
 @property (strong, nonatomic) DCEmulator *dcpu; 
+@property (strong, nonatomic) NSTimer *timer;
+
+- (void) runEmulator:(DCEmulator*)emu withInterval:(NSTimeInterval)interval;
+- (DCEmulator*) createEmulator;
+
 @end

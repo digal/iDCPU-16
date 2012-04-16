@@ -17,12 +17,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.pixelMultiplier = 1;
+        self.backgroundColor = [UIColor blueColor];
+
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextRef context = UIGraphicsGetCurrentContext();
     
     
 }

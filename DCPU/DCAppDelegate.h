@@ -17,6 +17,4 @@
 
 @property (strong, nonatomic) DCViewController *viewController;
 
-- (DCEmulator*) createEmulator;
-
 @end

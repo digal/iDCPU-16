@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DCScreenView.h"
+#import "DCEmulator.h"
 
 @interface DCScreenViewController : UIViewController {
     int _pixelMultiplier;
 }
 
 @property (nonatomic, strong) DCScreenView* screenView;
-//- (void) handleEmulator;
+
+- (void) handleEmulator:(DCEmulator*)emulator;
 
 @end

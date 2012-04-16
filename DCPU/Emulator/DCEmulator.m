@@ -309,6 +309,7 @@
 
 
 - (void) step {
+    NSLog(@"step %ld", cycles);
     UInt16 instr = mem[pc++];
     [self exec:instr];
     

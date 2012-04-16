@@ -26,23 +26,11 @@
     } else {
         vc = [[DCViewController alloc] initWithNibName:@"DCViewController_iPad" bundle:nil];
     }
-    self.viewController.dcpu = [self createEmulator];
     self.viewController = vc;
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
-
-- (DCEmulator*) createEmulator {
-    DCEmulator *dce = [[DCEmulator alloc] init];
-    //set top-left char to 'A'
-    dce->mem[VMEM_FONT_START + (0x41 * 2)] = 0x7E09;
-    dce->mem[VMEM_FONT_START + (0x41 * 2)] = 0x7E00;
-    dce->mem[VMEM_DISPLAY_START] = (UInt16)'A';
-    return dce;
-}
-
-
 
 
 @end
