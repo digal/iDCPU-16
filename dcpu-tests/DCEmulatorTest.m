@@ -44,4 +44,41 @@ DCEmulator* _emulator;
     }
 }
 
+- (void) testHandler {
+    __block int calls = 0;
+    DCHandler hndl = ^(DCEmulator* emu) {
+        NSLog(@"called");
+        calls++;
+        if (calls == 1) {
+            GHAssertEquals(emu->regs[X], (UInt16)1, @"X should be 1 after 1st call");
+            GHAssertEquals(emu->regs[Y], (UInt16)2, @"Y should be 2 after 1st call");
+            GHAssertEquals(emu->regs[Z], (UInt16)0, @"Z should be 0 after 1st call");
+            GHAssertEquals(emu->mem[0x1000], (UInt16)0, @"mem[0x1000] should be 0 after 1st call");
+        } else {
+            GHAssertEquals(emu->regs[X], (UInt16)1, @"X should be 1 after 2nd call");
+            GHAssertEquals(emu->regs[Y], (UInt16)2, @"Y should be 2 after 2nd call");
+            GHAssertEquals(emu->regs[Z], (UInt16)3, @"Z should be 3 after 2nd call");
+            GHAssertEquals(emu->mem[0x1000], (UInt16)4, @"mem[0x1000] should be 4 after 2nd call");
+        }
+    };
+    [_emulator addHWHandler:hndl withPeriod:2 andName:@"test handler"];
+    
+    UInt16 program[5] = {
+        SET | X << 4 | 0x21 << 10,
+        SET | Y << 4 | 0x22 << 10,
+        SET | Z << 4 | 0x23 << 10,
+        SET | NWP << 4 | 0x24 << 10, 0x1000
+    };
+    
+    [_emulator loadBinary:program withLength:5];
+    [_emulator step];
+    [_emulator step];
+    GHAssertEquals(calls, 1, @"Handler should be called 1 time after 2 steps");
+    [_emulator step];
+    [_emulator step];
+    GHAssertEquals(calls, 2, @"Handler should be called 2 tims after 4 steps");
+    
+    
+}
+
 @end

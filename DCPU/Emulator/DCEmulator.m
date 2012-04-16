@@ -10,10 +10,13 @@
 
 @implementation DCEmulator
 
+@synthesize handlers;
+
 - (id)init {
     self = [super init];
     if (self) {
         self->sp = STACK_START;
+        self.handlers = [[NSMutableArray alloc] init];
         NSLog(@"%@", [self state]);
     }
     return self;
@@ -308,6 +311,13 @@
 - (void) step {
     UInt16 instr = mem[pc++];
     [self exec:instr];
+    
+    for (DCHardwareHandler *hndl in self.handlers) {
+        if (hndl->lastCall + hndl->period <= cycles) {
+            hndl.handler(self);
+            hndl->lastCall = cycles;
+        }
+    }
 }
 
 - (void)error:(NSString*)message {
@@ -320,4 +330,12 @@
     return $str(@"PC:0x%04x SP:0x%04x O:0x%04x \n A:0x%04x B:0x%04x C:0x%04x X:0x%04x Y:0x%04x Z:0x%04x I:0x%04x J:0x%04x", pc, sp, o, regs[A], regs[B], regs[C], regs[X], regs[Y], regs[Z], regs[I], regs[J]);
 }
 
+- (void)addHWHandler:(DCHandler)handler withPeriod:(int)period andName:(NSString*)name {
+    DCHardwareHandler *h = [[DCHardwareHandler alloc] initWithHandler:handler period:period andName:name];
+    
+    [self.handlers addObject:h];
+    NSLog(@"Added hardware handler \"%@\" with period %d cycles", name, period);
+}
+
 @end
+

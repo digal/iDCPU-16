@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Instructions.h"
 #import "Values.h"
+#import "DCHardwareHandler.h"
 
 #define MEMSIZE 0x10000
 
@@ -27,8 +28,12 @@
     long cycles; 
 }
 
+@property (nonatomic, retain) NSMutableArray* handlers;
+
+
 - (void) step;
 - (NSString*) state;
+- (void)addHWHandler:(DCHandler)handler withPeriod:(int)period andName:(NSString*)name;
 
 //internal stuff for reading/writing values
 - (UInt16) getValue:(UInt8)src fromAddress:(UInt16)address;

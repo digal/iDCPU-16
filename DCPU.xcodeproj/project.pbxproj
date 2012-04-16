@@ -24,6 +24,8 @@
 		AA95CF251534C5F400F544F2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = AACA957F1534B80500D5AE46 /* Podfile */; };
 		AA95CF2D1534C60200F544F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA95CF091534BF5A00F544F2 /* main.m */; };
 		AA95CF311534C7CE00F544F2 /* DCValuesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA95CF2F1534C67000F544F2 /* DCValuesTest.m */; };
+		AAB90991153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */; };
+		AAB90992153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */; };
 		AACA955B1534B30500D5AE46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955A1534B30500D5AE46 /* UIKit.framework */; };
 		AACA955D1534B30500D5AE46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955C1534B30500D5AE46 /* Foundation.framework */; };
 		AACA955F1534B30500D5AE46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955E1534B30500D5AE46 /* CoreGraphics.framework */; };
@@ -52,6 +54,8 @@
 		AA95CF2F1534C67000F544F2 /* DCValuesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCValuesTest.m; sourceTree = "<group>"; };
 		AA95CF321534C85500F544F2 /* Instructions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Instructions.h; path = Emulator/Instructions.h; sourceTree = "<group>"; };
 		AA95CF331534CB5F00F544F2 /* Values.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Values.h; path = Emulator/Values.h; sourceTree = "<group>"; };
+		AAB9098F153C0B00007AA0B6 /* DCHardwareHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCHardwareHandler.h; path = Emulator/DCHardwareHandler.h; sourceTree = "<group>"; };
+		AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCHardwareHandler.m; path = Emulator/DCHardwareHandler.m; sourceTree = "<group>"; };
 		AACA95561534B30500D5AE46 /* DCPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACA955A1534B30500D5AE46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AACA955C1534B30500D5AE46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA6399DC153C0724008C8968 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AAB9098E153C07E4007AA0B6 /* Screen */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		AA95CF031534BF5A00F544F2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +130,13 @@
 				AA95CF0B1534BF5A00F544F2 /* dcpu-tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AAB9098E153C07E4007AA0B6 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Screen;
 			sourceTree = "<group>";
 		};
 		AACA954B1534B30500D5AE46 = {
@@ -155,6 +174,7 @@
 		AACA95601534B30500D5AE46 /* DCPU */ = {
 			isa = PBXGroup;
 			children = (
+				AA6399DC153C0724008C8968 /* UI */,
 				AACA957A1534B31400D5AE46 /* Emulator */,
 				AACA95691534B30500D5AE46 /* DCAppDelegate.h */,
 				AACA956A1534B30500D5AE46 /* DCAppDelegate.m */,
@@ -187,6 +207,8 @@
 				AACA957C1534B35F00D5AE46 /* DCEmulator.m */,
 				AA95CF321534C85500F544F2 /* Instructions.h */,
 				AA95CF331534CB5F00F544F2 /* Values.h */,
+				AAB9098F153C0B00007AA0B6 /* DCHardwareHandler.h */,
+				AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */,
 			);
 			name = Emulator;
 			sourceTree = "<group>";
@@ -327,6 +349,7 @@
 				AA95CF311534C7CE00F544F2 /* DCValuesTest.m in Sources */,
 				AA63981A1535BB8C008C8968 /* DCOpCodesTest.m in Sources */,
 				AA63981D15360185008C8968 /* DCEmulatorTest.m in Sources */,
+				AAB90992153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +361,7 @@
 				AACA956B1534B30500D5AE46 /* DCAppDelegate.m in Sources */,
 				AACA956E1534B30500D5AE46 /* DCViewController.m in Sources */,
 				AACA957D1534B35F00D5AE46 /* DCEmulator.m in Sources */,
+				AAB90991153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
