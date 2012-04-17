@@ -31,6 +31,7 @@
 		AAB909AE153C24F7007AA0B6 /* DCScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909AD153C24F7007AA0B6 /* DCScreenView.m */; };
 		AAB909AF153C24F7007AA0B6 /* DCScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909AD153C24F7007AA0B6 /* DCScreenView.m */; };
 		AAB909D6153C97AF007AA0B6 /* DCScreenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB909D5153C97AE007AA0B6 /* DCScreenTest.m */; };
+		AAB909FD153D598E007AA0B6 /* TestImages in Resources */ = {isa = PBXBuildFile; fileRef = AAB909FC153D598E007AA0B6 /* TestImages */; };
 		AACA955B1534B30500D5AE46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955A1534B30500D5AE46 /* UIKit.framework */; };
 		AACA955D1534B30500D5AE46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955C1534B30500D5AE46 /* Foundation.framework */; };
 		AACA955F1534B30500D5AE46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA955E1534B30500D5AE46 /* CoreGraphics.framework */; };
@@ -67,6 +68,7 @@
 		AAB909AD153C24F7007AA0B6 /* DCScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCScreenView.m; path = UI/Screen/DCScreenView.m; sourceTree = "<group>"; };
 		AAB909D2153C9238007AA0B6 /* DCMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCMemory.h; path = Emulator/DCMemory.h; sourceTree = "<group>"; };
 		AAB909D5153C97AE007AA0B6 /* DCScreenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCScreenTest.m; sourceTree = "<group>"; };
+		AAB909FC153D598E007AA0B6 /* TestImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestImages; sourceTree = SOURCE_ROOT; };
 		AACA95561534B30500D5AE46 /* DCPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACA955A1534B30500D5AE46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AACA955C1534B30500D5AE46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +125,7 @@
 		AA95CF031534BF5A00F544F2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				AAB909FC153D598E007AA0B6 /* TestImages */,
 				AA95CF041534BF5A00F544F2 /* Supporting Files */,
 				AA95CF2F1534C67000F544F2 /* DCValuesTest.m */,
 				AA63980E1535B88E008C8968 /* DCOpCodesTest.m */,
@@ -241,6 +244,7 @@
 				AA95CF1C1534C5F400F544F2 /* Frameworks */,
 				AA95CF211534C5F400F544F2 /* Resources */,
 				AA95CF261534C5F400F544F2 /* Copy Pods Resources */,
+				AAB909FE153D59DA007AA0B6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -306,6 +310,7 @@
 				AA95CF231534C5F400F544F2 /* DCViewController_iPhone.xib in Resources */,
 				AA95CF241534C5F400F544F2 /* DCViewController_iPad.xib in Resources */,
 				AA95CF251534C5F400F544F2 /* Podfile in Resources */,
+				AAB909FD153D598E007AA0B6 /* TestImages in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +356,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		AAB909FE153D59DA007AA0B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $PROJECT_DIR/Pods/GHUnitIOS/Scripts/PrepareUITests.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 
