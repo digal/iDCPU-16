@@ -55,7 +55,7 @@ CGColorRef colors[16];
 }
 
 - (void)drawRect:(CGRect)rect {
-    NSLog(@"drawrect: %@, pxX: %d", NSStringFromCGRect(rect), _pixelMultiplier);
+//    NSLog(@"drawrect: %@, pxX: %d", NSStringFromCGRect(rect), _pixelMultiplier);
     CGContextRef context = UIGraphicsGetCurrentContext();
 //    CGContextRetain(context);
 
@@ -68,7 +68,7 @@ CGColorRef colors[16];
             int y = BORDER_PX * _pixelMultiplier + (CHAR_H * chy * _pixelMultiplier);
 
             UInt16 chWord = self->chars[chy * ROW_CHARS + chx];
-            NSLog(@"chCoord = %dx%d, coord=%dx%d, chWord: 0x%04x", chx, chy, x, y, chWord);
+//            NSLog(@"chCoord = %dx%d, coord=%dx%d, chWord: 0x%04x", chx, chy, x, y, chWord);
             UInt8 fgColor = chWord >> 12;
             UInt8 bgColor = (chWord >> 8) & 0xF;
 

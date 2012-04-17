@@ -15,10 +15,11 @@ Emulator is at the very early stage of development, so nothing useful is impleme
 ### Implemented so far
 
 - emulator internals (able to execute bytecode according to spec)
+- display (font is not pre-loaded yet)
 
 ### Things to do
 
-- display 
+- preloaded font
 - keyboard
 - storage
 - assembler
