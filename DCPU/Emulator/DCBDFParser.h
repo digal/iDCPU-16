@@ -15,6 +15,7 @@
     
     @private
     int currentLine;
+    int currentRow;
     char currentChar;
     UInt32 currentGlyph;
     BOOL bitmapMode;

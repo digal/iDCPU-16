@@ -33,33 +33,32 @@
     NSArray* lines = [fileContents componentsSeparatedByString:@"\n"];
     
     for (NSString *line in lines) {
-//        NSLog(line, nil);
         NSArray *tokens = [line componentsSeparatedByString:@" "];
         NSString *cmd = [tokens objectAtIndex:0];
         if ([cmd isEqualToString:@"FONT"]) {
             NSLog(@"Parsing font %@", [tokens objectAtIndex:1]);
-        } else if ([cmd isEqualToString:@"STARTCHAR"]) {
-            NSString* charId = [tokens objectAtIndex:1];
-            unichar c;
-            if ([charId isEqualToString:@"C040"]) { //assume it's a space
-                c = ' ';
-            } else if (charId.length == 1)  {
-                c = [charId characterAtIndex:0];
-            } else {
-                continue;
-            }
-            currentChar = c;
-            NSLog(@"Current char: %c", currentChar);
+        } else if ([cmd isEqualToString:@"ENCODING"]) {
+            currentChar = [[tokens objectAtIndex:1] intValue];
+//            NSLog(@"Current char: %c", currentChar);
         } else if ([cmd isEqualToString:@"BITMAP"]) {
             bitmapMode = true;
         } else if ([cmd isEqualToString:@"ENDCHAR"]) {
+            font[currentChar * 2] = (currentGlyph >> 16) & 0xffff;
+            font[(currentChar * 2)+1] = (currentGlyph) & 0xffff;
             bitmapMode = false;
             currentChar = -1;
-        } else if (bitmapMode) {
+            currentGlyph = 0;
+            currentRow = 0;
+        } else if (bitmapMode && currentChar >= 0) {
             char * pEnd;
             const char * cLine = [cmd cStringUsingEncoding:NSASCIIStringEncoding];
-            UInt32 l = strtol(cLine, &pEnd, 16);
-            NSLog(@"line: 0x%02lx, cLine %s", l, cLine);
+            UInt8 l = strtol(cLine, &pEnd, 16);
+            l >>= 4;
+            for (int col=0; col<4; col++) {
+                UInt32 bit = (l >> 3-col) & 0x1;
+                currentGlyph = currentGlyph | ((bit << ((3-col) * 8)) << (currentRow) );
+            }
+            currentRow ++;
         }
             
         

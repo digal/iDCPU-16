@@ -63,10 +63,23 @@
     [parser loadBDFFromFile:@"atari-small"];
     
     DCEmulator *dce = [[DCEmulator alloc] init];
+    memcpy(&(dce->mem[VMEM_FONT_START]), parser->font, VMEM_FONT_SIZE * sizeof(UInt16));
     //set top-left char to 'A'
-    dce->mem[VMEM_FONT_START + ('A' * 2)] = 0x7E09;
-    dce->mem[VMEM_FONT_START + ('A' * 2) + 1] = 0x7E00;
-    dce->mem[VMEM_DISPLAY_START] = (UInt16)('A' | (0x0F << 8));
+//    dce->mem[VMEM_FONT_START + ('A' * 2)] = 0x7E09;
+//    dce->mem[VMEM_FONT_START + ('A' * 2) + 1] = 0x7E00;
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 11] = (UInt16)('H' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 12] = (UInt16)('e' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 13] = (UInt16)('l' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 14] = (UInt16)('l' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 15] = (UInt16)('o' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 16] = (UInt16)(',' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 17] = (UInt16)(' ' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 18] = (UInt16)('W' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 19] = (UInt16)('o' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 20] = (UInt16)('r' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 21] = (UInt16)('l' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 22] = (UInt16)('d' | (0x0F << 8));
+    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 23] = (UInt16)('!' | (0x0F << 8));
     
     dce->mem[VMEM_BG]     = 0xF; //white
     
