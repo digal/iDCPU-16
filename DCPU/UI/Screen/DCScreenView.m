@@ -66,21 +66,47 @@ CGColorRef colors[16];
         for (int chy = 0; chy <COL_CHARS; chy++) {
             int x = BORDER_PX * _pixelMultiplier + (CHAR_W * chx * _pixelMultiplier);
             int y = BORDER_PX * _pixelMultiplier + (CHAR_H * chy * _pixelMultiplier);
-//            NSLog(@"chCoord = %dx%d, coord=%dx%d", chx, chy, x, y);
 
-            
             UInt16 chWord = self->chars[chy * ROW_CHARS + chx];
-//            NSLog(@"chWord: 0x%04x", chWord);
+            NSLog(@"chCoord = %dx%d, coord=%dx%d, chWord: 0x%04x", chx, chy, x, y, chWord);
             UInt8 fgColor = chWord >> 12;
             UInt8 bgColor = (chWord >> 8) & 0xF;
 
             CGContextSetFillColorWithColor(context, colors[bgColor]);
-            CGContextSetStrokeColorWithColor(context, colors[fgColor]);
-            
             CGContextFillRect(context, CGRectMake(x, y, CHAR_W * _pixelMultiplier, CHAR_H * _pixelMultiplier));
+            
+            CGContextSetFillColorWithColor(context, colors[fgColor]);
+            [self drawChar:chWord withContext:context atX:x Y:y];
+
+            
+            
         }
     }
+}
+
+- (void)drawChar:(UInt16)chWord withContext:(CGContextRef)context atX:(int)x Y:(int)y {
+//    NSLog(@"coord=%dx%d, chWord: 0x%04x", x, y, chWord);
+    UInt8 charIndex = chWord & 0x7f;
     
+    UInt8 cols[4] = { 
+        (font[charIndex * 2] >> 8) & 0xFF ,
+        font[charIndex * 2] & 0xFF,
+        (font[(charIndex * 2) + 1] >> 8) & 0xFF ,
+        font[(charIndex * 2) + 1] & 0xFF
+    };
+    
+    for (int row=0; row < 8; row++) {
+        for (int col=0; col<4; col++) {
+            CGRect pixelRect 
+              = CGRectMake(x + col * _pixelMultiplier , y + row * _pixelMultiplier, _pixelMultiplier, _pixelMultiplier);
+            int px = (cols[col] >> row) & 0x1;
+            if (px) {
+                CGContextFillRect(context, pixelRect);
+            }
+            
+        };
+        
+    }
     
 }
 
