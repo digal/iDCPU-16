@@ -30,8 +30,6 @@
     DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 320, 256)];
     view.pixelMultiplier = 2;
     view->background     = 0xF; //white
-    [view setNeedsDisplay];
-    GHVerifyView(view);
     
     view->chars[0] = 'A' | (0x0F << 8); //black char on white bg
     
