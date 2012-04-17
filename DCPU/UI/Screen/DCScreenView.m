@@ -62,27 +62,22 @@ CGColorRef colors[16];
     CGContextSetFillColorWithColor(context, colors[self->background]);
     CGContextFillRect(context, rect);
     
-//    for (int chx = 0; chx <=ROW_CHARS; chx++) {
-//        for (int chy = 0; chy <=COL_CHARS; chy++) {
-//            int x = CHAR_W * chx;
-//            int y = CHAR_H * chy;
-//
-//            CGContextSelectFont (context, 
-//                                 "Helvetica-Bold",
-//                                 10,
-//                                 kCGEncodingMacRoman);
-//            CGContextSetCharacterSpacing (context, 10);
-//            CGContextSetTextDrawingMode (context, kCGTextFillStroke);
-//            CGContextSetRGBFillColor (context, 0, 1, 0, .5);
-//            CGContextSetRGBStrokeColor (context, 0, 0, 1, 1);
-//            CGContextShowTextAtPoint (context, x, y, "A", 1); 
-//        }
-//    }
+    for (int chx = 0; chx <=ROW_CHARS; chx++) {
+        for (int chy = 0; chy <=COL_CHARS; chy++) {
+            int x = BORDER_PX + (CHAR_W * chx * _pixelMultiplier);
+            int y = BORDER_PX + (CHAR_H * chy * _pixelMultiplier);
+            UInt16 chWord = self->chars[chy * ROW_CHARS + chx];
+            NSLog(@"chWord: 0x%04x", chWord);
+            UInt8 fgColor = chWord >> 12;
+            UInt8 bgColor = (chWord >> 8) & 0xF;
+
+            CGContextSetFillColorWithColor(context, colors[bgColor]);
+            CGContextSetStrokeColorWithColor(context, colors[fgColor]);
+            
+            CGContextFillRect(context, CGRectMake(x, y, CHAR_W * _pixelMultiplier, CHAR_H * _pixelMultiplier));
+        }
+    }
     
-//    CGContextRelease(context);
-
-//    CGColorRef
-
     
 }
 

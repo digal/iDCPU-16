@@ -60,9 +60,11 @@
 - (DCEmulator*) createEmulator {
     DCEmulator *dce = [[DCEmulator alloc] init];
     //set top-left char to 'A'
-    dce->mem[VMEM_FONT_START + (0x41 * 2)] = 0x7E09;
-    dce->mem[VMEM_FONT_START + (0x41 * 2)] = 0x7E00;
-    dce->mem[VMEM_DISPLAY_START] = (UInt16)'A';
+    dce->mem[VMEM_FONT_START + ('A' * 2)] = 0x7E09;
+    dce->mem[VMEM_FONT_START + ('A' * 2) + 1] = 0x7E00;
+    dce->mem[VMEM_DISPLAY_START] = (UInt16)('A' | (0x0F << 8));
+    
+    dce->mem[VMEM_BG]     = 0xF; //white
     
     UInt16 program[5] = {
         SET | PUSH << 4 | 0x30 << 10,         //SET PUSH 0x10

@@ -26,5 +26,22 @@
     GHVerifyView(view);
 }
 
+- (void) testChars {
+    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 320, 256)];
+    view.pixelMultiplier = 2;
+    view->background     = 0xF; //white
+    [view setNeedsDisplay];
+    GHVerifyView(view);
+    
+    view->chars[0] = 'A' | (0x0F << 8); //black char on white bg
+    
+    //'A' in notch's default font would be 0x7E09, 0x7E00.
+    view->font['A' * 2] = 0x7E09;
+    view->font['A' * 2 + 1] = 0x7E00;
+
+    [view setNeedsDisplay];
+    GHVerifyView(view);
+}
+
 
 @end
