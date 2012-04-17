@@ -15,11 +15,10 @@ Emulator is at the very early stage of development, so nothing useful is impleme
 ### Implemented so far
 
 - emulator internals (able to execute bytecode according to spec)
-- display (font is not pre-loaded yet)
+- display & pre-loaded font (4x8 "atari-small" from the [Tom's Fonts](http://hea-www.harvard.edu/~fine/Tech/x11fonts.html))
 
 ### Things to do
 
-- preloaded font
 - keyboard
 - storage
 - assembler
