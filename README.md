@@ -2,6 +2,8 @@
 
 DCPU-16 emulator, assembler and IDE for iOS devices
 
+![Hello, World!](https://github.com/digal/iDCPU-16/raw/master/TestImages/DCScreenTest-testFont-1-0-DCScreenView.png)
+
 ## Wut?
 
 - [0x10c](http://0x10c.com/)
