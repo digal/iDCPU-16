@@ -7,6 +7,7 @@
 //
 
 #import "DCViewController.h"
+#import "DCBDFParser.h"
 @interface DCViewController ()
 
 @end
@@ -58,6 +59,9 @@
 }
 
 - (DCEmulator*) createEmulator {
+    DCBDFParser *parser = [[DCBDFParser alloc] init];
+    [parser loadBDFFromFile:@"atari-small"];
+    
     DCEmulator *dce = [[DCEmulator alloc] init];
     //set top-left char to 'A'
     dce->mem[VMEM_FONT_START + ('A' * 2)] = 0x7E09;

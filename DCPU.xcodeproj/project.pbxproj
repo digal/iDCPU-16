@@ -43,6 +43,10 @@
 		AACA95741534B30500D5AE46 /* DCViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AACA95721534B30500D5AE46 /* DCViewController_iPad.xib */; };
 		AACA957D1534B35F00D5AE46 /* DCEmulator.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA957C1534B35F00D5AE46 /* DCEmulator.m */; };
 		AACA95801534B80500D5AE46 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = AACA957F1534B80500D5AE46 /* Podfile */; };
+		AAF22F00153DA31D0001D7B4 /* DCBDFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF22EFF153DA31D0001D7B4 /* DCBDFParser.m */; };
+		AAF22F01153DA31D0001D7B4 /* DCBDFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF22EFF153DA31D0001D7B4 /* DCBDFParser.m */; };
+		AAF22F05153DA6380001D7B4 /* atari-small.bdf in Resources */ = {isa = PBXBuildFile; fileRef = AAF22F04153DA6380001D7B4 /* atari-small.bdf */; };
+		AAF22F06153DA6380001D7B4 /* atari-small.bdf in Resources */ = {isa = PBXBuildFile; fileRef = AAF22F04153DA6380001D7B4 /* atari-small.bdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +90,9 @@
 		AACA957B1534B35F00D5AE46 /* DCEmulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCEmulator.h; path = Emulator/DCEmulator.h; sourceTree = "<group>"; };
 		AACA957C1534B35F00D5AE46 /* DCEmulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCEmulator.m; path = Emulator/DCEmulator.m; sourceTree = "<group>"; };
 		AACA957F1534B80500D5AE46 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		AAF22EFE153DA31D0001D7B4 /* DCBDFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCBDFParser.h; path = Emulator/DCBDFParser.h; sourceTree = "<group>"; };
+		AAF22EFF153DA31D0001D7B4 /* DCBDFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCBDFParser.m; path = Emulator/DCBDFParser.m; sourceTree = "<group>"; };
+		AAF22F04153DA6380001D7B4 /* atari-small.bdf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "atari-small.bdf"; path = "Resources/atari-small.bdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +200,7 @@
 		AACA95601534B30500D5AE46 /* DCPU */ = {
 			isa = PBXGroup;
 			children = (
+				AAF22F03153DA53F0001D7B4 /* Resources */,
 				AA6399DC153C0724008C8968 /* UI */,
 				AACA957A1534B31400D5AE46 /* Emulator */,
 				AACA95691534B30500D5AE46 /* DCAppDelegate.h */,
@@ -229,8 +237,18 @@
 				AAB9098F153C0B00007AA0B6 /* DCHardwareHandler.h */,
 				AAB90990153C0B00007AA0B6 /* DCHardwareHandler.m */,
 				AAB909D2153C9238007AA0B6 /* DCMemory.h */,
+				AAF22EFE153DA31D0001D7B4 /* DCBDFParser.h */,
+				AAF22EFF153DA31D0001D7B4 /* DCBDFParser.m */,
 			);
 			name = Emulator;
+			sourceTree = "<group>";
+		};
+		AAF22F03153DA53F0001D7B4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AAF22F04153DA6380001D7B4 /* atari-small.bdf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +329,7 @@
 				AA95CF241534C5F400F544F2 /* DCViewController_iPad.xib in Resources */,
 				AA95CF251534C5F400F544F2 /* Podfile in Resources */,
 				AAB909FD153D598E007AA0B6 /* TestImages in Resources */,
+				AAF22F06153DA6380001D7B4 /* atari-small.bdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +342,7 @@
 				AACA95741534B30500D5AE46 /* DCViewController_iPad.xib in Resources */,
 				AACA95801534B80500D5AE46 /* Podfile in Resources */,
 				AA6397F4153569C1008C8968 /* README.md in Resources */,
+				AAF22F05153DA6380001D7B4 /* atari-small.bdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +408,7 @@
 				AAB909A8153C1B33007AA0B6 /* DCScreenViewController.m in Sources */,
 				AAB909AF153C24F7007AA0B6 /* DCScreenView.m in Sources */,
 				AAB909D6153C97AF007AA0B6 /* DCScreenTest.m in Sources */,
+				AAF22F01153DA31D0001D7B4 /* DCBDFParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +423,7 @@
 				AAB90991153C0B00007AA0B6 /* DCHardwareHandler.m in Sources */,
 				AAB909A7153C1B33007AA0B6 /* DCScreenViewController.m in Sources */,
 				AAB909AE153C24F7007AA0B6 /* DCScreenView.m in Sources */,
+				AAF22F00153DA31D0001D7B4 /* DCBDFParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
