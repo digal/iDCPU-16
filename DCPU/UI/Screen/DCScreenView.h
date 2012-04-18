@@ -13,7 +13,7 @@
 #define PIX_W (CHAR_W*ROW_CHARS + BORDER_PX*2)
 #define PIX_H (CHAR_H*COL_CHARS + BORDER_PX*2)
 
-#define BORDER_PX 16
+#define BORDER_PX 8
 
 @interface DCScreenView : UIView {
     @public 

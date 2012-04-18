@@ -17,6 +17,7 @@
 @synthesize screen;
 @synthesize dcpu;
 @synthesize timer;
+@synthesize editor;
 
 - (void)viewDidLoad
 {
@@ -24,11 +25,16 @@
     [super viewDidLoad];
     self.dcpu = [self createEmulator];
     self.screen = [[DCScreenViewController alloc] init];
+    self.editor = [[UITextView alloc] initWithFrame:CGRectMake(320, 0, 320, self.scrollView.frame.size.height)];
+    self.editor.editable = YES;
+    self.editor.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [self.screen handleEmulator:dcpu];
     NSLog(@"view: %@", screen.view);
+    self.scrollView.contentSize = CGSizeMake(640, self.scrollView.contentSize.height);
     [self.scrollView addSubview:screen.view];
-    screen.view.frame = CGRectMake(0, 0, 320, 256);
-    
+    [self.scrollView addSubview:editor];
+    screen.view.frame = CGRectMake(16, 0, 288, 224);
+    NSLog(@"editor: %@", editor);
     [self runEmulator:dcpu withInterval:0.1];
 	// Do any additional setup after loading the view, typically from a nib.
 }

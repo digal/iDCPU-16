@@ -16,7 +16,7 @@
 @implementation DCScreenTest
 
 - (void) testBackgroundColor {
-    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 320, 256)];
+    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 288, 224)];
     view.pixelMultiplier = 2;
     view->background     = 0x1; //blue
     [view setNeedsDisplay];
@@ -28,7 +28,7 @@
 }
 
 - (void) testChars {
-    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 320, 256)];
+    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 288, 224)];
     view.pixelMultiplier = 2;
     view->background     = 0xF; //white
     
@@ -44,7 +44,7 @@
 
 - (void) testFont {
     NSString *testString = @"Hello, World!";
-    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 320, 256)];
+    DCScreenView *view = [[DCScreenView alloc] initWithFrame:CGRectMake(0, 0, 288, 224)];
     view.pixelMultiplier = 2;
     view->background     = 0xF; //white
 

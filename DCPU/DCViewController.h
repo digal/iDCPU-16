@@ -13,6 +13,7 @@
 @interface DCViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) DCScreenViewController *screen;
+@property (strong, nonatomic) UITextView *editor;
 @property (strong, nonatomic) DCEmulator *dcpu; 
 @property (strong, nonatomic) NSTimer *timer;
 
