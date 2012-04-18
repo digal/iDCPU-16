@@ -70,33 +70,25 @@
     
     DCEmulator *dce = [[DCEmulator alloc] init];
     memcpy(&(dce->mem[VMEM_FONT_START]), parser->font, VMEM_FONT_SIZE * sizeof(UInt16));
-    //set top-left char to 'A'
-//    dce->mem[VMEM_FONT_START + ('A' * 2)] = 0x7E09;
-//    dce->mem[VMEM_FONT_START + ('A' * 2) + 1] = 0x7E00;
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 11] = (UInt16)('H' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 12] = (UInt16)('e' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 13] = (UInt16)('l' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 14] = (UInt16)('l' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 15] = (UInt16)('o' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 16] = (UInt16)(',' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 17] = (UInt16)(' ' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 18] = (UInt16)('W' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 19] = (UInt16)('o' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 20] = (UInt16)('r' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 21] = (UInt16)('l' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 22] = (UInt16)('d' | (0x0F << 8));
-    dce->mem[VMEM_DISPLAY_START + 32 * 6 + 23] = (UInt16)('!' | (0x0F << 8));
     
     dce->mem[VMEM_BG]     = 0xF; //white
     
-    UInt16 program[5] = {
-        SET | PUSH << 4 | 0x30 << 10,         //SET PUSH 0x10
-        SET | X    << 4 | POP <<  10,         //SET X POP
-        ADD | NWP << 4  | 0x21 << 10, 0x1000, //ADD [0x1000] 1
-        0x0 | JSR << 4  | 0x22 << 10          //JSR 0x2
+    UInt16 program[] = {
+        SET | X     << 4 | 0x2A  << 10,        //SET X, 11
+        ADD | X     << 4 | NW    << 10, VMEM_DISPLAY_START + 32*6,     //ADD x, VMEM + 32 * 6 
+        SET | Y     << 4 | 0x2D  << 10,     //SET Y, :data
+        IFE | MEM_Y << 4 | 0x20  << 10,           //IFE [X], 20
+        SET | PC    << 4 | 0x2C  << 10,           //JMP :loop
+        SET | MEM_X << 4 | MEM_Y << 10,           //SET [Y], [X]
+        BOR | MEM_X << 4 | NW    << 10,  0x0F00,  //BOR [Y], 0x0F00 ; set char color
+        ADD | X     << 4 | 0x21  << 10,               //ADD X, 1
+        ADD | Y     << 4 | 0x21  << 10,               //ADD Y, 1
+        SET | PC    << 4 | 0x24  << 10,               //ADD Y, 1
+        SET | PC    << 4 | 0x2C  << 10,               //JMP :loop
+        'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', 0x0
     };
     
-    [dce loadBinary:program withLength:5];
+    [dce loadBinary:program withLength:sizeof(program) / sizeof(UInt16)];
     
     return dce;
 }
