@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		43AFA4459E8E4055A9AB60C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5008C07F933E43AE9964ABDC /* libPods.a */; };
+		AA5161B7153F4384000B24F0 /* dasm.grammar in Resources */ = {isa = PBXBuildFile; fileRef = AA5161B6153F4384000B24F0 /* dasm.grammar */; };
+		AA5161B8153F4384000B24F0 /* dasm.grammar in Resources */ = {isa = PBXBuildFile; fileRef = AA5161B6153F4384000B24F0 /* dasm.grammar */; };
 		AA6397F4153569C1008C8968 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AA6397F3153569C1008C8968 /* README.md */; };
 		AA63981A1535BB8C008C8968 /* DCOpCodesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63980E1535B88E008C8968 /* DCOpCodesTest.m */; };
 		AA63981D15360185008C8968 /* DCEmulatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63981B1535FFFE008C8968 /* DCEmulatorTest.m */; };
@@ -52,6 +54,7 @@
 /* Begin PBXFileReference section */
 		4CFA9CD1E0D34541A084A3E1 /* Pods.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		5008C07F933E43AE9964ABDC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA5161B6153F4384000B24F0 /* dasm.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dasm.grammar; path = Resources/dasm.grammar; sourceTree = "<group>"; };
 		AA6397F3153569C1008C8968 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		AA63980E1535B88E008C8968 /* DCOpCodesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCOpCodesTest.m; sourceTree = "<group>"; };
 		AA63981B1535FFFE008C8968 /* DCEmulatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCEmulatorTest.m; sourceTree = "<group>"; };
@@ -121,6 +124,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA5161B4153F435E000B24F0 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assembler;
+			sourceTree = "<group>";
+		};
 		AA6399DC153C0724008C8968 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +210,7 @@
 		AACA95601534B30500D5AE46 /* DCPU */ = {
 			isa = PBXGroup;
 			children = (
+				AA5161B4153F435E000B24F0 /* Assembler */,
 				AAF22F03153DA53F0001D7B4 /* Resources */,
 				AA6399DC153C0724008C8968 /* UI */,
 				AACA957A1534B31400D5AE46 /* Emulator */,
@@ -247,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF22F04153DA6380001D7B4 /* atari-small.bdf */,
+				AA5161B6153F4384000B24F0 /* dasm.grammar */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -330,6 +342,7 @@
 				AA95CF251534C5F400F544F2 /* Podfile in Resources */,
 				AAB909FD153D598E007AA0B6 /* TestImages in Resources */,
 				AAF22F06153DA6380001D7B4 /* atari-small.bdf in Resources */,
+				AA5161B8153F4384000B24F0 /* dasm.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +356,7 @@
 				AACA95801534B80500D5AE46 /* Podfile in Resources */,
 				AA6397F4153569C1008C8968 /* README.md in Resources */,
 				AAF22F05153DA6380001D7B4 /* atari-small.bdf in Resources */,
+				AA5161B7153F4384000B24F0 /* dasm.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
