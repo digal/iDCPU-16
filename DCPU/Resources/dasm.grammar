@@ -1,0 +1,37 @@
+//@reportsCommentTokens = YES;
+//@commentState       = '/';
+//@singleLineComments = '//';
+//@multiLineComments  = '/*' '*/';
+
+@start              = program;
+
+program = element+;
+element = value | debugSymbol | instruction | label;
+
+debugSymbol = '{' Number '}';
+label = ':' labelName;
+labelName = Word;
+
+instruction = basicInstruction | extendedInstruction;
+
+basicInstruction = wInstruction | rwInstruction;
+
+wInstruction = setOp wOperand ',' rOperand;
+rwInstruction = basicOp rwOperand ',' rOperand;
+extendedInstruction = extOp rOperand;
+
+rOperand = register | memory | peek | pop | value;
+wOperand = register | memory | push;
+rwOperand = register | memory;
+
+register = 'A' | 'B' | 'C' | 'X' | 'Y' | 'Z' | 'I' | 'J' | 'PC' | 'SP' | 'O' ;
+peek = 'PEEK';
+push = 'PUSH';
+pop = 'POP';
+memory = '[' address ']';
+address = register | peek | pop | value | registerPlus;
+registerPlus = value '+' register;
+setOp = 'SET';
+basicOp = 'ADD' | 'SUB' | 'MUL' | 'DIV' | 'MOD' | 'SHL' | 'SHR' | 'AND' | 'BOR' | 'XOR' | 'IFE' | 'IFN' | 'IFG' | 'IFB';
+extOp = 'JSR';
+value = Number;
