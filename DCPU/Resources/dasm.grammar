@@ -21,7 +21,7 @@ wInstruction = setOp wOperand ',' rOperand;
 rwInstruction = basicOp rwOperand ',' rOperand;
 extendedInstruction = extOp rOperand;
 
-rOperand = register | memory | peek | pop | number;
+rOperand = register | memory | peek | pop | number | labelName;
 wOperand = register | memory | push;
 rwOperand = register | memory;
 
@@ -30,7 +30,7 @@ peek = 'PEEK';
 push = 'PUSH';
 pop = 'POP';
 memory = '[' address ']';
-address = register | peek | pop | number | registerPlus;
+address = register | peek | pop | number | registerPlus | labelName;
 registerPlus = number '+' register;
 setOp = 'SET';
 basicOp = 'ADD' | 'SUB' | 'MUL' | 'DIV' | 'MOD' | 'SHL' | 'SHR' | 'AND' | 'BOR' | 'XOR' | 'IFE' | 'IFN' | 'IFG' | 'IFB';

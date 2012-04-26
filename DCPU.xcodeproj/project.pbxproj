@@ -13,6 +13,13 @@
 		AA6397F4153569C1008C8968 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AA6397F3153569C1008C8968 /* README.md */; };
 		AA63981A1535BB8C008C8968 /* DCOpCodesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63980E1535B88E008C8968 /* DCOpCodesTest.m */; };
 		AA63981D15360185008C8968 /* DCEmulatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63981B1535FFFE008C8968 /* DCEmulatorTest.m */; };
+		AA6B64F21544860000FB4F33 /* DCAssemblerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6B64F11544860000FB4F33 /* DCAssemblerParser.m */; };
+		AA6B64F91544867200FB4F33 /* DCProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6B64F81544867200FB4F33 /* DCProgram.m */; };
+		AA6B64FA1544867200FB4F33 /* DCProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6B64F81544867200FB4F33 /* DCProgram.m */; };
+		AA6B64FD15448D0C00FB4F33 /* DCAssemblerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6B64FC15448D0C00FB4F33 /* DCAssemblerTest.m */; };
+		AA6B650015448D8E00FB4F33 /* test.dasm in Resources */ = {isa = PBXBuildFile; fileRef = AA6B64FF15448D8E00FB4F33 /* test.dasm */; };
+		AA6B650215448E5C00FB4F33 /* test.bin in Resources */ = {isa = PBXBuildFile; fileRef = AA6B650115448E5B00FB4F33 /* test.bin */; };
+		AA6B650315448F2100FB4F33 /* DCAssemblerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6B64F11544860000FB4F33 /* DCAssemblerParser.m */; };
 		AA95CF191534C5F400F544F2 /* DCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA956A1534B30500D5AE46 /* DCAppDelegate.m */; };
 		AA95CF1A1534C5F400F544F2 /* DCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA956D1534B30500D5AE46 /* DCViewController.m */; };
 		AA95CF1B1534C5F400F544F2 /* DCEmulator.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA957C1534B35F00D5AE46 /* DCEmulator.m */; };
@@ -58,6 +65,13 @@
 		AA6397F3153569C1008C8968 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		AA63980E1535B88E008C8968 /* DCOpCodesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCOpCodesTest.m; sourceTree = "<group>"; };
 		AA63981B1535FFFE008C8968 /* DCEmulatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCEmulatorTest.m; sourceTree = "<group>"; };
+		AA6B64F01544860000FB4F33 /* DCAssemblerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAssemblerParser.h; path = Assembler/DCAssemblerParser.h; sourceTree = "<group>"; };
+		AA6B64F11544860000FB4F33 /* DCAssemblerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAssemblerParser.m; path = Assembler/DCAssemblerParser.m; sourceTree = "<group>"; };
+		AA6B64F71544867200FB4F33 /* DCProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCProgram.h; path = Assembler/DCProgram.h; sourceTree = "<group>"; };
+		AA6B64F81544867200FB4F33 /* DCProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCProgram.m; path = Assembler/DCProgram.m; sourceTree = "<group>"; };
+		AA6B64FC15448D0C00FB4F33 /* DCAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAssemblerTest.m; sourceTree = "<group>"; };
+		AA6B64FF15448D8E00FB4F33 /* test.dasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.dasm; path = TestPrograms/test.dasm; sourceTree = "<group>"; };
+		AA6B650115448E5B00FB4F33 /* test.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = test.bin; path = TestPrograms/test.bin; sourceTree = "<group>"; };
 		AA95CF051534BF5A00F544F2 /* dcpu-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "dcpu-tests-Info.plist"; sourceTree = "<group>"; };
 		AA95CF071534BF5A00F544F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA95CF091534BF5A00F544F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,6 +141,10 @@
 		AA5161B4153F435E000B24F0 /* Assembler */ = {
 			isa = PBXGroup;
 			children = (
+				AA6B64F01544860000FB4F33 /* DCAssemblerParser.h */,
+				AA6B64F11544860000FB4F33 /* DCAssemblerParser.m */,
+				AA6B64F71544867200FB4F33 /* DCProgram.h */,
+				AA6B64F81544867200FB4F33 /* DCProgram.m */,
 			);
 			name = Assembler;
 			sourceTree = "<group>";
@@ -139,15 +157,26 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		AA6B64FE15448D6500FB4F33 /* TestPrograms */ = {
+			isa = PBXGroup;
+			children = (
+				AA6B650115448E5B00FB4F33 /* test.bin */,
+				AA6B64FF15448D8E00FB4F33 /* test.dasm */,
+			);
+			name = TestPrograms;
+			sourceTree = "<group>";
+		};
 		AA95CF031534BF5A00F544F2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				AA6B64FE15448D6500FB4F33 /* TestPrograms */,
 				AAB909FC153D598E007AA0B6 /* TestImages */,
 				AA95CF041534BF5A00F544F2 /* Supporting Files */,
 				AA95CF2F1534C67000F544F2 /* DCValuesTest.m */,
 				AA63980E1535B88E008C8968 /* DCOpCodesTest.m */,
 				AA63981B1535FFFE008C8968 /* DCEmulatorTest.m */,
 				AAB909D5153C97AE007AA0B6 /* DCScreenTest.m */,
+				AA6B64FC15448D0C00FB4F33 /* DCAssemblerTest.m */,
 			);
 			name = Tests;
 			path = "dcpu-tests";
@@ -343,6 +372,8 @@
 				AAB909FD153D598E007AA0B6 /* TestImages in Resources */,
 				AAF22F06153DA6380001D7B4 /* atari-small.bdf in Resources */,
 				AA5161B8153F4384000B24F0 /* dasm.grammar in Resources */,
+				AA6B650015448D8E00FB4F33 /* test.dasm in Resources */,
+				AA6B650215448E5C00FB4F33 /* test.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +454,9 @@
 				AAB909AF153C24F7007AA0B6 /* DCScreenView.m in Sources */,
 				AAB909D6153C97AF007AA0B6 /* DCScreenTest.m in Sources */,
 				AAF22F01153DA31D0001D7B4 /* DCBDFParser.m in Sources */,
+				AA6B64FA1544867200FB4F33 /* DCProgram.m in Sources */,
+				AA6B64FD15448D0C00FB4F33 /* DCAssemblerTest.m in Sources */,
+				AA6B650315448F2100FB4F33 /* DCAssemblerParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +472,8 @@
 				AAB909A7153C1B33007AA0B6 /* DCScreenViewController.m in Sources */,
 				AAB909AE153C24F7007AA0B6 /* DCScreenView.m in Sources */,
 				AAF22F00153DA31D0001D7B4 /* DCBDFParser.m in Sources */,
+				AA6B64F21544860000FB4F33 /* DCAssemblerParser.m in Sources */,
+				AA6B64F91544867200FB4F33 /* DCProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

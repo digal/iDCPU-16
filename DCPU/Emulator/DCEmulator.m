@@ -7,6 +7,7 @@
 //
 
 #import "DCEmulator.h"
+#import "ConciseKit.h"
 
 @implementation DCEmulator
 

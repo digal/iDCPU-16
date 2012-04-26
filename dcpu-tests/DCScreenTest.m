@@ -8,6 +8,8 @@
 
 #import "DCScreenView.h"
 #import "DCBDFParser.h"
+#import <GHUnitIOS/GHUnit.h> 
+
 
 @interface DCScreenTest : GHViewTestCase
 

@@ -7,6 +7,8 @@
 //
 
 #import "DCEmulator.h"
+#import <GHUnitIOS/GHUnit.h> 
+#import "ConciseKit.h"
 
 @interface DCValuesTest : GHTestCase {}
 @end
